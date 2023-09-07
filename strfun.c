@@ -30,7 +30,6 @@ char *_strcate(char *dest, char *src)
 		return (dest);
 }
 
-#include "main.h"
 /**
  * _strdupp -  returns a pointer to a new string, a duplicate
  * @str: the original string
@@ -65,7 +64,6 @@ char *_strdupp(char *str)
 	return (aaa);
 }
 
-#include "main.h"
 /**
  * _stricomp - compare string values
  * @s1: input value
