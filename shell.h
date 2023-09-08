@@ -23,6 +23,8 @@
 #define EXT_FAILURE 1
 #define TRUE (1 == 1)
 #define FALSE (!TRUE)
+#define TOK_BUFSIZE 128
+#define TOK_DELIMIT " \t\r\n\a"
 
 /* -----environ----- */
 extern char **environ;
@@ -65,5 +67,14 @@ int _putz(const char *str);
 int _stricomp(char *s1, char *s2);
 char *_strdupp(char *str);
 char *_strcate(char *dest, char *src);
+
+
+/*-----------tokens----------*/
+char *ex_char(char *N_commd, int bool);
+void add_nodes(token_t **h1, cmmd_t **h2, char *N_commd);
+void fetch_commd(token_t **tok_list, cmmd_t **cmmd_list, inventory_t *listx);
+int tokenize_cmmd(inventory_t *listx, char *N_commd);
+char **tokenize(char *N_commd);
+
 
 #endif
