@@ -36,7 +36,7 @@ inventory_t *buildarginv(void);
 list_t *env_list(void);
 unsigned int link_tally(list_t *head);
 char **L_list_to_dptr(list_t *head);
-int hj_env(inventory_t *listx);
+int pt_env(inventory_t *listx);
 size_t print_list(list_t *head);
 list_t *add_node_end(list_t **head, char *var, char *val);
 char **split_str(char *str);
@@ -53,10 +53,13 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
 /* -----custom C std lib----- */
 void _perror(const char *string);
+ssize_t _getline(char **buffer, size_t *LTD);
+ssize_t _readline(int fd, char **buffer, size_t *LTD);
 
 
 /*---------strings-----------*/
 size_t __attribute__ ((warn_unused_result)) _strlen(const char *s);
+char *_strncate(char *dest, char *src, int n);
 int _putzar(char c);
 int _putz(const char *str);
 int _stricomp(char *s1, char *s2);

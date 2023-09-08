@@ -1,4 +1,5 @@
-#include "main.h"
+#include "shell.h"
+
 /**
 * _getline - custom getline currently reads 1 char at a time
 * @buffer: address of pointer to input commands buffer
