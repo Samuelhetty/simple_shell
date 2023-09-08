@@ -30,6 +30,7 @@ char *_strcate(char *dest, char *src)
 		dest[a] = '\0';
 		return (dest);
 }
+
 /**
  * _strdupp -  returns a pointer to a new string, a duplicate
  * @str: the original string
