@@ -1,4 +1,5 @@
-#include "main.h"
+#include "shell.h"
+
 /**
 * _putzar - brings the character to std output
 * @c: the character to print out

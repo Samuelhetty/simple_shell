@@ -1,4 +1,5 @@
-#include "main.h"
+#include "shell.h"
+
 /**
  *  _strcate - function that concatenates two strings
  *  @dest: entered value
@@ -29,8 +30,6 @@ char *_strcate(char *dest, char *src)
 		dest[a] = '\0';
 		return (dest);
 }
-
-#include "main.h"
 /**
  * _strdupp -  returns a pointer to a new string, a duplicate
  * @str: the original string
@@ -65,7 +64,6 @@ char *_strdupp(char *str)
 	return (aaa);
 }
 
-#include "main.h"
 /**
  * _stricomp - compare string values
  * @s1: input value
@@ -87,4 +85,18 @@ int _stricomp(char *s1, char *s2)
 			i++;
 		}
 		return (0);
+}
+/**
+ * _strlen - returns string length of input string
+ * @s: string to check length of
+ * Return: length of string
+ */
+size_t __attribute__ ((warn_unused_result)) _strlen(const char *s)
+{
+	size_t longi = 0;
+	while (*s++)
+	{
+		longi++;
+	}
+	return (longi);
 }
