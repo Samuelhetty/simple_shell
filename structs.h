@@ -3,27 +3,28 @@
 
 
 /**
- * struct token - struct for tokenizing string
- * @str: token strings
- * @id: token ids
+ * struct cmmd_s - struct for storing command line
+ * @cmmd: cmmand line
+ * @next: next node
  *
  */
-typedef struct token
+typedef struct cmmd_s
 {
-    int id;
-    char *str;
-} token_t;
+	char *cmmd;
+	struct cmmd_s *next;
+} cmmd_t;
+
 
 /**
- * struct tokens - struct for tokenizing string
- * @tokens: array of token_t structs with tokenized strings and ids
- * @num_tok: amount of tokens parsed
+ * struct token_s - struct for tokenizing string
+ * @tokens: ; | &
+ * @next: next node
  *
  */
-typedef struct tokens
+typedef struct token_s
 {
-    token_t *tokens;
-    int num_tok;
+    char tokens;
+    struct token_s *next;
 } tokens_t;
 
 /**
