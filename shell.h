@@ -70,11 +70,13 @@ char *_strcate(char *dest, char *src);
 
 
 /*-----------tokens----------*/
-char *ex_char(char *N_commd, int bool);
-void add_nodes(token_t **h1, cmmd_t **h2, char *N_commd);
-void fetch_commd(token_t **tok_list, cmmd_t **cmmd_list, inventory_t *listx);
+char *ex_char(char *N_commd, int bl);
+void add_nodes(tokens_t **h1, cmmd_t **h2, char *N_commd);
+void fetch_commd(tokens_t **tok_list, cmmd_t **cmmd_list, inventory_t *listx);
 int tokenize_cmmd(inventory_t *listx, char *N_commd);
 char **tokenize(char *N_commd);
+void add_tok_node_end(tokens_t **head, char tokens);
+void add_cmmd_node_end(cmmd_t **head, char *cmmd);
 
 
 #endif

@@ -1,18 +1,18 @@
-#include "shell"
+#include "shell.h"
 
 
 /**
  * ex_char - exchanges | and & for non-printed chars
  *
  * @N_commd: input string
- * @bool: type of exchange
+ * @bl: type of exchange
  * Return: exchanged string
  */
-char *ex_char(char *N_commd, int bool)
+char *ex_char(char *N_commd, int bl)
 {
 	int index;
 
-	if (bool == 0)
+	if (bl == 0)
 	{
 		for (index = 0; N_commd[index]; index++)
 		{
@@ -51,7 +51,7 @@ char *ex_char(char *N_commd, int bool)
  * @N_commd: input string
 e* Return: no return
  */
-void add_nodes(token_s **h1, cmmd_s **h2, char *N_commd)
+void add_nodes(tokens_t **h1, cmmd_t **h2, char *N_commd)
 {
 	int i;
 	char *cmmd;
@@ -87,10 +87,10 @@ void add_nodes(token_s **h1, cmmd_s **h2, char *N_commd)
  * @listx: arguments list
  * Return: no return
  */
-void fetch_commd(token_t **tok_list, cmmd_t **cmmd_list, inventory_t *listx)
+void fetch_commd(tokens_t **tok_list, cmmd_t **cmmd_list, inventory_t *listx)
 {
 	int num_tok;
-	token_t *temp1;
+	tokens_t *temp1;
 	cmmd_t *temp2;
 
 	num_tok = 1;
@@ -130,7 +130,7 @@ void fetch_commd(token_t **tok_list, cmmd_t **cmmd_list, inventory_t *listx)
  */
 int tokenize_cmmd(inventory_t *listx, char *N_commd)
 {
-	token_t *h1, *tok_list;
+	tokens_t *h1, *tok_list;
 	cmmd_t *h2, *cmmd_list;
 	int iterate;
 
@@ -145,7 +145,7 @@ int tokenize_cmmd(inventory_t *listx, char *N_commd)
 	while (cmmd_list != NULL)
 	{
 		listx->N_commd = cmmd_list->cmmd;
-		listx->envlist = split_line(listx->N_commd);
+		listx->envlist = tokenize(listx->N_commd);
 		iterate = exec_cmmd(listx);
 		free(listx->envlist);
 
