@@ -41,3 +41,11 @@ char *hf_strtok(char *str, const char *delim)
 
 	return (next_token);
 }
+/**
+ * ezit - a function that terminates the program
+ */
+void ezit(void)
+{
+	exit(0);
+}
+

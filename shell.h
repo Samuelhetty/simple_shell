@@ -57,7 +57,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void _perror(const char *string);
 ssize_t _getline(char **buffer, size_t *LTD);
 ssize_t _readline(int fd, char **buffer, size_t *LTD);
-
+void ezit(void);
 
 /*---------strings-----------*/
 size_t __attribute__ ((warn_unused_result)) _strlen(const char *s);
