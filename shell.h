@@ -71,11 +71,10 @@ char *hf_strtok(char *str, const char *delim);
 
 
 /*-----------tokens----------*/
-char *ex_char(char *N_commd, int bool);
-void add_nodes(token_t **h1, cmmd_t **h2, char *N_commd);
-void fetch_commd(token_t **tok_list, cmmd_t **cmmd_list, inventory_t *listx);
+char *ex_char(char *N_commd, int boll);
+void add_nodes(tokens_t **h1, cmmd_t **h2, char *N_commd);
+void fetch_commd(tokens_t **tok_list, cmmd_t **cmmd_list, inventory_t *listx);
 int tokenize_cmmd(inventory_t *listx, char *N_commd);
 char **tokenize(char *N_commd);
-
 
 #endif
