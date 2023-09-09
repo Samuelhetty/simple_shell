@@ -65,5 +65,6 @@ int _putz(const char *str);
 int _stricomp(char *s1, char *s2);
 char *_strdupp(char *str);
 char *_strcate(char *dest, char *src);
+char *hf_strtok(char *str, const char *delim);
 
 #endif
