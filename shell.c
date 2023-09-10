@@ -62,8 +62,8 @@ void run_shell(inventory_t *listx)
 				free(N_commd);
 				continue;
 			}
-			N_commd = replace_var(N_commd, listx);
-			exit = tokenize(listx, N_commd);
+			N_commd = bash_replace(N_commd, listx);
+			exit = tokenize_cmmd(listx, N_commd);
 			listx->commd_tally += 1;
 			free(N_commd);
 		}
@@ -87,7 +87,7 @@ char *read_commd(int *i_eof)
         char *N_commd = NULL;
         size_t bufsize = 0;
 
-        *i_eof = _getline(&N_commd, &bufsize, stdin);
+        *i_eof = getline(&N_commd, &bufsize, stdin);
 
         return (N_commd);
 }

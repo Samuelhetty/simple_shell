@@ -1,25 +1,27 @@
+#include "shell.h"
+
 /**
  * buildarginv - Initialize arguments
  *
  * @listx: arguments list
- * @av: argument vector
+ * @argv: argument vector
  * Return: no return
  */
-void buildarginv(inventory_t *listx, char **av)
+void buildarginv(inventory_t *listx, char **argv)
 {
         unsigned int i;
 
-        listx->av = av;
+        listx->argv = argv;
         listx->N_commd = NULL;
 	listx->st_mode = _filemode(STDIN_FILENO);
-        listx->args = NULL;
+        listx->envlist = NULL;
         listx->exit_status = 0;
         listx->commd_tally = 1;
 
         for (i = 0; environ[i]; i++)
                 ;
 
-        listx->_environ = malloc(sizeof(char *) * (i + 1));
+        listx->_environ = safe_malloc(sizeof(char *) * (i + 1));
 
         for (i = 0; environ[i]; i++)
         {
@@ -33,20 +35,20 @@ void buildarginv(inventory_t *listx, char **av)
 /**
  * main - Entry point
  *
- * @ac: argument count
- * @av: argument vector
+ * @argc: argument count
+ * @argv: argument vector
  *
  * Return: 0 on success.
  */
-int main(int ac, char **av)
+int main(int argc, char **argv)
 {
 	inventory_t listx;
-	(void) ac;
+	(void) argc;
 
 	signal(SIGINT, display_prompt);
-	buildarginv(&listx, av);
+	buildarginv(&listx, argv);
 	run_shell(&listx);
-	free_list(&listx);
+	free_cmmd(&listx);
 	if (listx.exit_status < 0)
 		return (255);
 	return (listx.exit_status);

@@ -20,8 +20,7 @@ char **tokenize(char *N_commd)
 		write(STDERR_FILENO, ": allocation error\n", 18);
 		exit(EXT_FAILURE);
 	}
-
-	split = _strtok(N_commd, TOK_DELIMIT);
+	split = hf_strtok(N_commd, TOK_DELIMIT);
 	tokenN[0] = split;
 
 	for (i = 1; split != NULL; i++)
@@ -36,7 +35,7 @@ char **tokenize(char *N_commd)
 				exit(EXT_FAILURE);
 			}
 		}
-		split = _strtok(NULL, TOK_DELIMIT);
+		split = hf_strtok(NULL, TOK_DELIMIT);
 		tokenN[i] = split;
 	}
 

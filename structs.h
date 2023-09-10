@@ -35,8 +35,9 @@ typedef struct token_s
  */
 typedef struct list_s
 {
-    char *var;
-    char *val;
+    int var;
+    int val;
+    char *value;
     struct list_s *next;
 } list_t;
 
@@ -55,18 +56,15 @@ typedef struct list_s
  */
 typedef struct inventory
 {
-    char *N_commd;
-    char **commd;
-    int st_mode;
-    list_t *envlist;
-    size_t buflimit;
-    tokens_t tokens;
-    int num_bg_jobs;
-
-    pid_t last_bg_pid;
-
-    int exit;
-    int exit_status;
+	char **argv;
+	char *N_commd;
+	char **envlist;
+	int st_mode;
+	int commd_tally;
+	char **_environ;
+	char *pid;
+	int exit;
+	int exit_status;
 
 } inventory_t;
 

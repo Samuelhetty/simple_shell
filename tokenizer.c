@@ -1,18 +1,17 @@
 #include "shell.h"
 
-
 /**
  * ex_char - exchanges | and & for non-printed chars
  *
  * @N_commd: input string
- * @bl: type of exchange
+ * @boll: type of exchange
  * Return: exchanged string
  */
-char *ex_char(char *N_commd, int bl)
+char *ex_char(char *N_commd, int boll)
 {
 	int index;
 
-	if (bl == 0)
+	if (boll == 0)
 	{
 		for (index = 0; N_commd[index]; index++)
 		{
@@ -70,11 +69,11 @@ void add_nodes(tokens_t **h1, cmmd_t **h2, char *N_commd)
 		}
 	}
 
-	cmmd = _strtok(N_commd, ";|&");
+	cmmd = hf_strtok(N_commd, ";|&");
 	do {
 		cmmd = ex_char(cmmd, 1);
 		add_cmmd_node_end(h2, cmmd);
-		cmmd = _strtok(NULL, ";|&");
+		cmmd = hf_strtok(NULL, ";|&");
 	} while (cmmd != NULL);
 
 }
@@ -159,7 +158,7 @@ int tokenize_cmmd(inventory_t *listx, char *N_commd)
 	}
 
 	free_tok(&h1);
-	free_cmmd(&h2);
+	free_commd(&h2);
 
 	if (iterate == 0)
 		return (0);
