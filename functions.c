@@ -43,10 +43,11 @@ char *hf_strtok(char *str, const char *delim)
 }
 /**
  * ezit - a function that terminates the program
+ * @exit: exit the program successfully
  */
-void ezit(void)
+void ezit(int exit)
 {
-	exit(0);
+	exit(exit);
 }
 
 /**
