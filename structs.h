@@ -70,12 +70,12 @@ typedef struct inventory
 
 /**
  * struct _builtins - matches command to appropriate builtin function
- * @commd: string command for builtin
+ * @args: string command for builtin
  * @builtin_func: function to handle builtin command
  */
 typedef struct _builtins
 {
-    char *commd;
+    char *args;
     int (*builtin_func)(inventory_t *listx);
 } builtins_t;
 

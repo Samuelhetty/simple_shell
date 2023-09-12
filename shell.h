@@ -64,6 +64,8 @@ void hf_print(const char *prints);
 
 /*------------builtins-----------*/
 void ezit(void);
+int processor_builtins(inventory_t *listx);
+int (*run_builtin(char *command))(inventory_t *);
 
 /*---------strings-----------*/
 size_t __attribute__ ((warn_unused_result)) _strlen(const char *s);

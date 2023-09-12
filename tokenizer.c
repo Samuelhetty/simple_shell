@@ -145,7 +145,7 @@ int tokenize_cmmd(inventory_t *listx, char *N_commd)
 	{
 		listx->N_commd = cmmd_list->cmmd;
 		listx->envlist = tokenize(listx->N_commd);
-		iterate = exec_cmmd(listx);
+		iterate = processor_builtins(listx);
 		free(listx->envlist);
 
 		if (iterate == 0)
