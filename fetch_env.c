@@ -87,46 +87,41 @@ char print_list(const char *ID, char **_environ)
  * @var: variable lenght
  * Return: pointer to new added node
  **/
-list_t *add_node_end(list_t **head, char *value, int val, int var)
+list_t *add_node_end(list_t **head, int var, char *value, int val)
 {
 	/*Create a new node*/
 	list_t *newn, *temp;
 
-	newn = (list_t *)safe_malloc(sizeof(list_t));
+	newn = safe_malloc(sizeof(list_t));
 
 	/*Check if memory allocation failed*/
 	if (newn == NULL)
 	{
-		hf_print(stderr, "Memory allocation failed\n", 28);
-		exit(1);
+		_perror("Memory allocation failed\n");
+		exit(EXT_FAILURE);
 	}
-	/*Initialize the new node*/
+
+	/*Fill in the base node's values*/
+	newn->value = value;
 	newn->var = var;
-
-	/*Allocate memory for the string and copy the value*/
-	newn->value = _strdupp(value);
-	if (newn->value == NULL)
-	{
-		hf_print(stderr, "Memory allocation failed\n", 28);
-		exit(1);
-	}
-
 	newn->val = val;
+
+	/*Set the function pointer to NULL initially*/
 	newn->next = NULL;
+	temp = *head;
 
 	/*If the list is empty, set the new node as the head*/
-	if (*head == NULL)
+	if (*temp == NULL)
 	{
 		*head = newn;
 	}
 	else
 	{
-		/*Otherwise, traverse to the end of the list and add the new node there*/
-		temp = *head;
-		while (temp->next != NULL)
-		{
+		/*Otherwise, traverse the list and add the new_node to the end*/
+		while (temp->next != NULL) 
 			temp = temp->next;
-		}
 		temp->next = newn;
 	}
+
+	return newn;
 }

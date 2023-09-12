@@ -42,7 +42,7 @@ char *bash_replace(char *N_commd, inventory_t *listx);
 char *replaced_var(list_t **head, char *N_commd, char *N_input, int N_len);
 int identify_vars(list_t **head, char *input, char *last_bg_status, inventory_t *envlist);
 void perform_search(list_t **head, char *input, inventory_t *envlist);
-list_t *add_node_end(list_t **head, char *value, int var, int val);
+list_t *add_node_end(list_t **head, int var, char *value, int val);
 void free_list(list_t **head);
 char *read_commd(int *i_eof);
 
@@ -66,6 +66,11 @@ void hf_print(const char *prints);
 void ezit(void);
 int processor_builtins(inventory_t *listx);
 int (*run_builtin(char *command))(inventory_t *);
+int handle_error(inventory_t *listx, char *N_commd);
+void pt_error(inventory_t *listx, char *N_commd, int indx, int boll);
+int char_entry(char *N_commd, int *indx);
+int fetch_err(char *N_commd, int i, char end);
+int ch_dupp(char *N_commd, int i);
 
 /*---------strings-----------*/
 size_t __attribute__ ((warn_unused_result)) _strlen(const char *s);

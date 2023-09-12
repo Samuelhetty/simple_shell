@@ -17,5 +17,5 @@ int str_to_int(const char *c)
  */
 void int_to_str(int num, char* string)
 {
-	printf(string, "%d", number);
+	printf(string, "%d", num);
 }

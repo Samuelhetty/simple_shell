@@ -4,17 +4,19 @@
  * free_list - function to free list
  *
  */
-void free_list(list_t *head)
+void free_list(list_t **head)
 {
 	list_t *temp, *next;
 
-	temp = head;
-	while (temp != NULL)
+	if (head != NULL)
 	{
-		next = temp->next;
-		free(temp->value);
-		free(temp);
-		temp = next;
+		temp = *head;
+		while ((next = temp) != NULL)
+		{
+			temp = temp->next;
+			free(temp);
+		}
+		*head = NULL;
 	}
 }
 
@@ -49,7 +51,6 @@ void free_tok(tokens_t **head)
 	{
 		temp = *head;
 		*head = (*head)->next;
-		free(temp->tokens);
 		free(temp);
 	}
 }

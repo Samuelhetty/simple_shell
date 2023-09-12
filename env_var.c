@@ -146,7 +146,7 @@ char *bash_replace(char *N_commd, inventory_t *listx)
         char *exit_status, *N_input;
         int old, new;
 
-        exit_status = aux_itoa(listx->exit_status);
+        exit_status = int_to_str(listx->exit_status);
         head = NULL;
 
         old = identify_vars(&head, N_commd, exit_status, listx);

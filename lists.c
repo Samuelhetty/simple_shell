@@ -28,7 +28,7 @@ void buildarginv(inventory_t *listx, char **argv)
         }
 
         listx->_environ[i] = NULL;
-        listx->pid = aux_itoa(getpid());
+        listx->pid = int_to_str(getpid());
 }
 
 /**
