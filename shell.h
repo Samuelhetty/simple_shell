@@ -63,7 +63,8 @@ ssize_t _readline(int fd, char **buffer, size_t *LTD);
 void hf_print(const char *prints);
 
 /*------------builtins-----------*/
-void ezit(void);
+int ezit(inventory_t *listx);
+int is_unsignedint(char *num);
 int processor_builtins(inventory_t *listx);
 int (*run_builtin(char *command))(inventory_t *);
 int handle_error(inventory_t *listx, char *N_commd);
