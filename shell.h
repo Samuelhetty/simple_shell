@@ -80,9 +80,10 @@ int _putz(const char *str);
 int _stricomp(char *s1, char *s2);
 char *_strdupp(char *str);
 char *_strcate(char *dest, char *src);
-char *hf_strtok(char *str, const char *delim);
-int str_to_int(const char *c);
-void int_to_str(int num, char* string);
+char *_strcpy(char *dest, char *src);
+char *int_to_str(int n);
+int _atoi(char *s);
+int print_len(int n);
 
 
 /*-----------tokens----------*/

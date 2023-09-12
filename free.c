@@ -2,6 +2,7 @@
 
 /**
  * free_list - function to free list
+ * @head: the head of the list
  *
  */
 void free_list(list_t **head)

@@ -1,45 +1,22 @@
 #include "shell.h"
 /**
- * hf_strtok - tokenize (split) a string into smaller parts
- * @str: the string to split
- * @delim: on a specified delimiter
- * Return: a char
+ * _strcpy - copies the string pointed to by src
+ *
+ * @dest: string one pointer to a char
+ * @src: string two pointer to a char
+ * Return: character (dest)
  */
-char *hf_strtok(char *str, const char *delim)
+char *_strcpy(char *dest, char *src)
 {
-	static char *next_token;
-	char *token_end;
+	int i;
 
-	if (str != NULL)
+	for (i = 0; src[i] != '\0'; i++)
 	{
-		next_token = str;
+		dest[i] = src[i];
 	}
-	else if (next_token == NULL)
-	{
-		return (NULL);
-	}
+	dest[i] = '\0';
 
-	next_token += strspn(next_token, delim);
-
-	if (*next_token == '\0')
-	{
-		next_token = NULL;
-		return (NULL);
-	}
-
-	token_end = next_token + strcspn(next_token, delim);
-
-	if (*token_end != '\0')
-	{
-		*token_end = '\0';
-		next_token = token_end + 1;
-	}
-	else
-	{
-		next_token = NULL;
-	}
-
-	return (next_token);
+	return (dest);
 }
 /**
  * ezit - a function that terminates the program

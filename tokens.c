@@ -71,7 +71,7 @@ void add_tok_node_end(tokens_t **head, char tokens)
 	}
 }
 /**
- * add_cmmd_node_end - adds a command node at the end of the list
+ * add_cmmd_node_end - adds a command node at end of the list
  *
  * @head: first node
  * @cmmd: command
@@ -79,23 +79,23 @@ void add_tok_node_end(tokens_t **head, char tokens)
  */
 void add_cmmd_node_end(cmmd_t **head, char *cmmd)
 {
-        cmmd_t *N_node, *temp;
+	cmmd_t *N_node, *temp;
 
-        N_node = safe_malloc(sizeof(cmmd_t));
-        N_node->cmmd = cmmd;
-        N_node->next = NULL;
+	N_node = safe_malloc(sizeof(cmmd_t));
+	N_node->cmmd = cmmd;
+	N_node->next = NULL;
 
-        if (*head == NULL)
-        {
-                *head = N_node;
-        }
-        else
-        {
-                temp = *head;
-                while (temp->next != NULL)
-                {
-                        temp = temp->next;
-                }
-                temp->next = N_node;
-        }
+	if (*head == NULL)
+	{
+		*head = N_node;
+	}
+	else
+	{
+		temp = *head;
+		while (temp->next != NULL)
+		{
+			temp = temp->next;
+		}
+		temp->next = N_node;
+	}
 }

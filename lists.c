@@ -8,27 +8,27 @@
  */
 void buildarginv(inventory_t *listx, char **argv)
 {
-        unsigned int i;
+	unsigned int i;
 
-        listx->argv = argv;
-        listx->N_commd = NULL;
+	listx->argv = argv;
+	listx->N_commd = NULL;
 	listx->st_mode = _filemode(STDIN_FILENO);
-        listx->envlist = NULL;
-        listx->exit_status = 0;
-        listx->commd_tally = 1;
+	listx->envlist = NULL;
+	listx->exit_status = 0;
+	listx->commd_tally = 1;
 
-        for (i = 0; environ[i]; i++)
-                ;
+	for (i = 0; environ[i]; i++)
+		;
 
-        listx->_environ = safe_malloc(sizeof(char *) * (i + 1));
+	listx->_environ = safe_malloc(sizeof(char *) * (i + 1));
 
-        for (i = 0; environ[i]; i++)
-        {
-                listx->_environ[i] = _strdupp(environ[i]);
-        }
+	for (i = 0; environ[i]; i++)
+	{
+		listx->_environ[i] = _strdupp(environ[i]);
+	}
 
-        listx->_environ[i] = NULL;
-        listx->pid = int_to_str(getpid());
+	listx->_environ[i] = NULL;
+	listx->pid = int_to_str(getpid());
 }
 
 /**

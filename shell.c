@@ -75,7 +75,6 @@ void run_shell(inventory_t *listx)
 	}
 }
 
-
 /**
  * read_commd - reads the input string.
  *
@@ -84,10 +83,10 @@ void run_shell(inventory_t *listx)
  */
 char *read_commd(int *i_eof)
 {
-        char *N_commd = NULL;
-        size_t bufsize = 0;
+	char *N_commd = NULL;
+	size_t bufsize = 0;
 
-        *i_eof = getline(&N_commd, &bufsize, stdin);
+	*i_eof = getline(&N_commd, &bufsize, stdin);
 
-        return (N_commd);
+	return (N_commd);
 }

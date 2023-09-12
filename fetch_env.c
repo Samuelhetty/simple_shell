@@ -34,10 +34,10 @@ int pt_env(inventory_t *listx)
 {
 	int i, j;
 
-	for (i =0; listx->_environ[i]; i++)
+	for (i = 0; listx->_environ[i]; i++)
 	{
 
-		for (j =0; listx->_environ[i][j]; j++)
+		for (j = 0; listx->_environ[i][j]; j++)
 
 			write(STDOUT_FILENO, listx->_environ[i], j);
 		write(STDOUT_FILENO, "n", 1);
@@ -57,25 +57,25 @@ int pt_env(inventory_t *listx)
  */
 char print_list(const char *ID, char **_environ)
 {
-	 char *_env;
-	 int i, nxt;
+	char *_env;
+	int i, nxt;
 
-	 /* Initialize _env value */
-	 _env = NULL;
-	 nxt = 0;
-	 /* Compare all environment variables */
-	 /* environ is declared in the header file */
-	 for (i = 0; _environ[i]; i++)
-	 {
-		 /* If name and env are equal */
-		 nxt = check_ID(_environ[i], ID);
-		 if (nxt)
-		 {
-			 _env = _environ[i];
-			 break;
-		 }
-	 }
-	 return (_env + nxt);
+	/* Initialize _env value */
+	_env = NULL;
+	nxt = 0;
+	/* Compare all environment variables */
+	/* environ is declared in the header file */
+	for (i = 0; _environ[i]; i++)
+	{
+		/* If name and env are equal */
+		nxt = check_ID(_environ[i], ID);
+		if (nxt)
+		{
+			_env = _environ[i];
+			break;
+		}
+	}
+	return (_env + nxt);
 }
 
 
@@ -118,10 +118,10 @@ list_t *add_node_end(list_t **head, int var, char *value, int val)
 	else
 	{
 		/*Otherwise, traverse the list and add the new_node to the end*/
-		while (temp->next != NULL) 
+		while (temp->next != NULL)
 			temp = temp->next;
 		temp->next = newn;
 	}
 
-	return newn;
+	return (newn);
 }

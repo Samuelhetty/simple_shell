@@ -55,7 +55,7 @@ int fetch_err(char *N_commd, int i, char end)
 
 		if (end == '&')
 		{
-                        end = ch_dupp(N_commd, 0);
+			end = ch_dupp(N_commd, 0);
 			if (N_commd == 0 || N_commd > 1)
 				return (i);
 		}
@@ -115,7 +115,7 @@ void pt_error(inventory_t *listx, char *N_commd, int indx, int boll)
 
 	msg2 = ": Syntax error: \"";
 	msg3 = "\" unexpected\n";
-	tally =int_to_str(listx->tally);
+	tally = int_to_str(listx->tally);
 	length = _strlen(listx->argv[0]) + _strlen(tally);
 	length += _strlen(msg) + _strlen(msg2) + _strlen(msg3) + 2;
 
@@ -127,9 +127,9 @@ void pt_error(inventory_t *listx, char *N_commd, int indx, int boll)
 	}
 	_strcpy(error, listx->argv[0]);
 	_strcate(error, ": ");
-       	_strcate(error, tally);
-       	_strcate(error, msg2);
-       	_strcate(error, msg);
+	_strcate(error, tally);
+	_strcate(error, msg2);
+	_strcate(error, msg);
 	_strcate(error, msg3);
 	_strcate(error, "\0");
 
@@ -157,6 +157,7 @@ int handle_error(inventory_t *listx, char *N_commd)
 	}
 
 	i = fetch_err(N_commd + start, 0, *(N_commd + start));
+
 	if (i != 0)
 	{
 		pt_error(listx, N_commd, start + i, 1);
