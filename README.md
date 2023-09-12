@@ -2,7 +2,7 @@ SIMPLE SHELL PROJECT
 
 This is a custom shell command line intepreter which takes the command inputs written from the user's keyboard and passes them to the machine to execute them through the kernel just like a regular shell. It also validates correct command inputs.
 
-Here are the files that enables JH_shell emulates shell:
+Here are the files that enables HF_shell emulates shell:
 
 #display_prompt.c
 

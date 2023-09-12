@@ -1,11 +1,10 @@
 #include "shell.h"
 
 /**
- * buildarginv - Initialize arguments
+ * buildarginv - Initialize argument
  *
  * @listx: arguments list
  * @argv: argument vector
- * Return: no return
  */
 void buildarginv(inventory_t *listx, char **argv)
 {

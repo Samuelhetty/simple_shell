@@ -37,10 +37,9 @@ void free_cmmd(inventory_t *listx)
 	free(listx->pid);
 }
 /**
- * free_tok - frees allocated memory for struct tokens_t
+ * free_tok - frees allocated memory for the struct tokens_t
  *
  * @head: first node
- * Return: no return
  */
 void free_tok(tokens_t **head)
 {
@@ -58,7 +57,6 @@ void free_tok(tokens_t **head)
  * free_commd - frees allocated memory for struct cmmd_t
  *
  * @head: first node
- * Return: no return
  */
 void free_commd(cmmd_t **head)
 {
