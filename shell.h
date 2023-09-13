@@ -37,7 +37,7 @@ void free_cmmd(inventory_t *listx);
 /* -----custom environ----- */
 int check_ID(const char *n_var, const char *ID);
 int pt_env(inventory_t *listx);
-char print_list(const char *ID, char **_environ);
+char *print_var(const char *ID, char **_environ);
 char *bash_replace(char *N_commd, inventory_t *listx);
 char *replaced_var(list_t **head, char *N_commd, char *N_input, int N_len);
 int identify_vars(list_t **head, char *input, char *last_bg_status, inventory_t *envlist);
@@ -72,6 +72,10 @@ void pt_error(inventory_t *listx, char *N_commd, int indx, int boll);
 int char_entry(char *N_commd, int *indx);
 int fetch_err(char *N_commd, int i, char end);
 int ch_dupp(char *N_commd, int i);
+int execute(inventory_t *listx);
+int is_exec(inventory_t *listx);
+char *locate_path(char *id, char **_environ);
+int ch_dir(char *path, int *i);
 
 /*---------strings-----------*/
 size_t __attribute__ ((warn_unused_result)) _strlen(const char *s);

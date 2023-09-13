@@ -43,14 +43,12 @@ typedef struct list_s
 
 /**
  * struct inventory - inventory of support arguments for immediate access
+ * @argv: argument vector
  * @N_commd: str of input commands
- * @envlist: custom environ linked list
- * @buflimit: buflimit max of 1024 chars
  * @st_mode: set mode to either FIFO or terminal
- * @commd: double pointer to commands list
- * @tokens: tokens list
- * @last_bg_pid: last pid
- * @num_bg_jobs: background count
+ * @envlist: double pointer to commands list
+ * @commd_tally: counter
+ * @pid: processs id of the shell
  * @exit: the exit indicator
  * @exit_status: the exit status
  */

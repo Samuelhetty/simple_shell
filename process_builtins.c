@@ -11,8 +11,6 @@ int (*run_builtin(char *command))(inventory_t *)
 
 	builtins_t builtin_list[] = {
 		{ "env", pt_env }, { "exit", ezit },
-		{ "setenv", _setenv }, { "unsetenv", _unsetenv },
-		{ "cd", hf_cd }, { "help", hf_help },
 		{ NULL, NULL }
 	};
 

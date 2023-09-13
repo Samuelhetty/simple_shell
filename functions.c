@@ -35,7 +35,7 @@ int ezit(inventory_t *listx)
 		listx->exit = 1;
 	else if (is_unsignedint(envlist[1]))
 	{
-		e_status= str_to_int(envlist[1]);
+		e_status= _atoi(envlist[1]);
 		listx->exit = 1;
 		listx->exit_status = e_status;
 	}

@@ -48,14 +48,14 @@ int pt_env(inventory_t *listx)
 }
 
 /**
- * print_list - prints environmental variable list
+ * print_var - prints environmental variable list
  * @ID: name of the environment variable
  * @_environ: env variables
  *
  * Return:  value of the environment variable if is found.
  * In other case, returns NULL
  */
-char print_list(const char *ID, char **_environ)
+char *print_var(const char *ID, char **_environ)
 {
 	char *_env;
 	int i, nxt;
@@ -111,7 +111,7 @@ list_t *add_node_end(list_t **head, int var, char *value, int val)
 	temp = *head;
 
 	/*If the list is empty, set the new node as the head*/
-	if (*temp == NULL)
+	if (temp == NULL)
 	{
 		*head = newn;
 	}

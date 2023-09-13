@@ -117,7 +117,7 @@ char *replaced_var(list_t **head, char *N_commd, char *N_input, int N_len)
 			{
 				for (k = 0; k < count->val; k++)
 				{
-					N_input[i] = count->val[k];
+					N_input[i] = count->value[k];
 					i++;
 				}
 				j += (count->var);

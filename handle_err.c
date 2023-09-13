@@ -56,7 +56,7 @@ int fetch_err(char *N_commd, int i, char end)
 		if (end == '&')
 		{
 			end = ch_dupp(N_commd, 0);
-			if (N_commd == 0 || N_commd > 1)
+			if (tally == 0 || tally > 1)
 				return (i);
 		}
 	}
@@ -96,10 +96,10 @@ int char_entry(char *N_commd, int *indx)
  */
 void pt_error(inventory_t *listx, char *N_commd, int indx, int boll)
 {
-	char *msg, *msg2, *msg3, *error, *tally;
+	char *msg, *msg2, *msg3, *error, *commd_tally;
 	int length;
 
-	if (indx[indx] == ';')
+	if (N_commd[indx] == ';')
 	{
 		if (boll == 0)
 			msg = (N_commd[indx + 1] == ';' ? ";;" : ";");
@@ -115,19 +115,19 @@ void pt_error(inventory_t *listx, char *N_commd, int indx, int boll)
 
 	msg2 = ": Syntax error: \"";
 	msg3 = "\" unexpected\n";
-	tally = int_to_str(listx->tally);
-	length = _strlen(listx->argv[0]) + _strlen(tally);
+	commd_tally = int_to_str(listx->commd_tally);
+	length = _strlen(listx->argv[0]) + _strlen(commd_tally);
 	length += _strlen(msg) + _strlen(msg2) + _strlen(msg3) + 2;
 
 	error = safe_malloc(sizeof(char) * (length + 1));
 	if (error == 0)
 	{
-		free(tally);
+		free(commd_tally);
 		return;
 	}
 	_strcpy(error, listx->argv[0]);
 	_strcate(error, ": ");
-	_strcate(error, tally);
+	_strcate(error, commd_tally);
 	_strcate(error, msg2);
 	_strcate(error, msg);
 	_strcate(error, msg3);
@@ -135,7 +135,7 @@ void pt_error(inventory_t *listx, char *N_commd, int indx, int boll)
 
 	write(STDERR_FILENO, error, length);
 	free(error);
-	free(tally);
+	free(commd_tally);
 }
 
 /**
