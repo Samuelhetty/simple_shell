@@ -71,3 +71,87 @@ char *locate_path(char *id, char **_environ)
 			return (id);
 	return (NULL);
 }
+/**
+ * exec_path - determines if is an executable
+ *
+ * @listx: argument inventory
+ * Return: 0 if is not an executable, other number if it does
+ */
+int exec_path(inventory_t *listx)
+{
+	struct stat begin;
+	int i;
+	char *N_commd;
+
+	N_commd = listx->envlist[0];
+
+	for (i = 0; N_commd[i]; i++)
+	{
+		if (N_commd[i] == '.')
+		{
+			if (N_commd[i + 1] == '.')
+				return 0;
+			if (N_commd[i + 1] == '/')
+				continue;
+			else
+				break;
+		}
+		else if (N_commd[i] == '/' && i != 0)
+		{
+			if (N_commd[i + 1] == '.')
+				continue;
+			i++;
+			break;
+		}
+		else
+			break;
+	}
+	if (i == 0)
+		return 0;
+	if (stat(N_commd + i, &begin) == 0)
+	{
+		if ((begin.st_mode & S_IXUSR) || (begin.st_mode & S_IXGRP) || (begin.st_mode & S_IXOTH))
+			return i;
+	}
+
+	return -1;
+}
+/**
+ * execute - executes command lines
+ *
+ * @listx: argument inventory
+ * Return: 1 on success.
+ */
+int execute(inventory_t *listx)
+{
+	pid_t pd;
+	int state;
+	int exe;
+	char *directories;
+
+	exe = exec_path(listx);
+
+	if (exe == -1)
+		return 1;
+	directories = (exe == 0) ? locate_path(listx->envlist[0], listx->_environ) : listx->envlist[0];
+
+	pd = fork();
+	if (pd == 0)
+	{
+		execve(directories + exe, listx->envlist, listx->_environ);
+		_perror(listx->argv[0]);
+		exit(1);
+	}
+	else if (pd < 0)
+	{
+		_perror(listx->argv[0]);
+		return 1;
+	}
+	else
+	{
+		waitpid(pd, &state, 0);
+	}
+
+	listx->exit_status = WIFEXITED(state) ? WEXITSTATUS(state) : 1;
+	return 1;
+}
