@@ -46,6 +46,7 @@ typedef struct list_s
  * @argv: argument vector
  * @N_commd: str of input commands
  * @st_mode: set mode to either FIFO or terminal
+ * @buflimit: buflimit max of 1024 chars
  * @envlist: double pointer to commands list
  * @commd_tally: counter
  * @pid: processs id of the shell
@@ -58,6 +59,7 @@ typedef struct inventory
 	char *N_commd;
 	char **envlist;
 	int st_mode;
+	size_t buflimit;
 	int commd_tally;
 	char **_environ;
 	char *pid;
