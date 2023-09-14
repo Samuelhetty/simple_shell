@@ -27,36 +27,36 @@ char *_strncate(char *dest, char *src, int n)
  */
 char *hf_strtok(char *str, const char *delim)
 {
-    static char *lastToken = NULL;
-    char *token;
-    bool foundDelimiter = false;
+	static char *lastToken = NULL;
+	char *token;
+	bool foundDelimiter = false;
 
-    /*If str is NULL, continue tokenizing from the last token's position*/
-    if (str == NULL)
-        str = lastToken;
+	/*If str is NULL, continue tokenizing from the last token's position*/
+	if (str == NULL)
+		str = lastToken;
 
-    /* Skip leading delimiters*/
-    while (*str != '\0' && strchr(delim, *str) != NULL)
-        str++;
+	/* Skip leading delimiters*/
+	while (*str != '\0' && strchr(delim, *str) != NULL)
+		str++;
 
-    /* If we've reached the end of the string or it's all delimiters, return NULL*/
-    if (*str == '\0')
-        return NULL;
+	/* If we've reached the end of the string or it's all delimiters, return NULL*/
+	if (*str == '\0')
+		return (NULL);
 
-    /* Find the end of the token (next delimiter or end of string)*/
-    token = str;
-    while (*str != '\0' && strchr(delim, *str) == NULL)
-        str++;
+	/* Find the end of the token (next delimiter or end of string)*/
+	token = str;
+	while (*str != '\0' && strchr(delim, *str) == NULL)
+		str++;
 
-    /* If we found a delimiter, null-terminate the token and update lastToken*/
-    if (*str != '\0') {
-        *str = '\0';
-        str++;
-        foundDelimiter = true;
-    }
+	/* If we found a delimiter, null-terminate the token and update lastToken*/
+	if (*str != '\0') {
+		*str = '\0';
+		str++;
+		foundDelimiter = true;
+	}
 
-    /* Update lastToken if a delimiter was found, otherwise set it to NULL*/
-    lastToken = foundDelimiter ? str : NULL;
+	/* Update lastToken if a delimiter was found, otherwise set it to NULL*/
+	lastToken = foundDelimiter ? str : NULL;
 
-    return token;
+	return (token);
 }

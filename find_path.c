@@ -111,10 +111,10 @@ int exec_path(inventory_t *listx)
 	if (stat(N_commd + i, &begin) == 0)
 	{
 		if ((begin.st_mode & S_IXUSR) || (begin.st_mode & S_IXGRP) || (begin.st_mode & S_IXOTH))
-			return i;
+			return (i);
 	}
 
-	return -1;
+	return (-1);
 }
 /**
  * execute - executes command lines
@@ -145,7 +145,7 @@ int execute(inventory_t *listx)
 	else if (pd < 0)
 	{
 		_perror(listx->argv[0]);
-		return 1;
+		return (1);
 	}
 	else
 	{
@@ -153,5 +153,5 @@ int execute(inventory_t *listx)
 	}
 
 	listx->exit_status = WIFEXITED(state) ? WEXITSTATUS(state) : 1;
-	return 1;
+	return (1);
 }
