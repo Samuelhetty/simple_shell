@@ -74,22 +74,22 @@ char *_strdupp(char *str)
  */
 int _stricomp(char str[], const char *delim)
 {
-        unsigned int i, j, k;
+	unsigned int i, j, k;
 
-        for (i = 0, k = 0; str[i]; i++)
-        {
-                for (j = 0; delim[j]; j++)
-                {
-                        if (str[i] == delim[j])
-                        {
-                                k++;
-                                break;
-                        }
-                }
-        }
-        if (i == k)
-                return (1);
-        return (0);
+	for (i = 0, k = 0; str[i]; i++)
+	{
+		for (j = 0; delim[j]; j++)
+		{
+			if (str[i] == delim[j])
+			{
+				k++;
+				break;
+			}
+		}
+	}
+	if (i == k)
+		return (1);
+	return (0);
 }
 
 /**

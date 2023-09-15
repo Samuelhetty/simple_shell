@@ -107,7 +107,7 @@ int exec_path(inventory_t *listx)
 			break;
 	}
 	if (i == 0)
-		return 0;
+		return (0);
 	if (stat(N_commd + i, &begin) == 0)
 	{
 		if ((begin.st_mode & S_IXUSR) || (begin.st_mode & S_IXGRP) || (begin.st_mode & S_IXOTH))
