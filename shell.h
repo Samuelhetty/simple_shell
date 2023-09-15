@@ -40,8 +40,8 @@ int pt_env(inventory_t *listx);
 char *print_var(const char *ID, char **_environ);
 char *bash_replace(char *N_commd, inventory_t *listx);
 char *replaced_var(list_t **head, char *N_commd, char *N_input, int N_len);
-int identify_vars(list_t **head, char *input, char *last_bg_status, inventory_t *envlist);
-void perform_search(list_t **head, char *input, inventory_t *envlist);
+int identify_vars(list_t **head, char *input, char *last_bg_status, inventory_t *inventory);
+void perform_search(list_t **head, char *input, inventory_t *inventory);
 list_t *add_node_end(list_t **head, int var, char *value, int val);
 void free_list(list_t **head);
 char *read_commd(int *i_eof);
@@ -55,6 +55,7 @@ void run_shell(inventory_t *listx);
 char *mem_reset(char *str, int bytes);
 void *safe_malloc(int size);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+char **dptr_alloc(char **dptr, unsigned int old, unsigned int new);
 
 /* -----custom C std lib----- */
 void _perror(const char *string);
@@ -82,7 +83,7 @@ size_t __attribute__ ((warn_unused_result)) _strlen(const char *s);
 char *_strncate(char *dest, char *src, int n);
 int _putzar(char c);
 int _putz(const char *str);
-int _stricomp(char *s1, char *s2);
+int _stricomp(char str[], const char *delim);
 char *_strdupp(char *str);
 char *_strcate(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
@@ -98,8 +99,8 @@ void add_nodes(tokens_t **h1, cmmd_t **h2, char *N_commd);
 void fetch_commd(tokens_t **tok_list, cmmd_t **cmmd_list, inventory_t *listx);
 int tokenize_cmmd(inventory_t *listx, char *N_commd);
 char **tokenize(char *N_commd);
-void add_tok_node_end(tokens_t **head, char tokens);
-void add_cmmd_node_end(cmmd_t **head, char *cmmd);
+tokens_t *add_tok_node_end(tokens_t **head, char div);
+cmmd_t *add_cmmd_node_end(cmmd_t **head, char *cmmd);
 void free_commd(cmmd_t **head);
 void free_tok(tokens_t **head);
 

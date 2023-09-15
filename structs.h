@@ -3,17 +3,29 @@
 
 
 /**
- * struct cmmd_s - struct for storing command line
- * @cmmd: cmmand line
- * @next: next node
- *
+ * struct inventory - inventory of support arguments for immediate access
+ * @argv: argument vector
+ * @N_commd: str of input commands
+ * @st_mode: set mode to either FIFO or terminal
+ * @envlist: double pointer to commands list
+ * @commd_tally: counter
+ * @pid: processs id of the shell
+ * @exit: the exit indicator
+ * @exit_status: the exit status
  */
-typedef struct cmmd_s
+typedef struct inventory
 {
-	char *cmmd;
-	struct cmmd_s *next;
-} cmmd_t;
+        char **argv;
+        char *N_commd;
+        char **envlist;
+        int st_mode;
+        int commd_tally;
+        char **_environ;
+        char *pid;
+        int exit;
+        int exit_status;
 
+} inventory_t;
 
 /**
  * struct token_s - struct for tokenizing string
@@ -28,6 +40,19 @@ typedef struct token_s
 } tokens_t;
 
 /**
+ * struct cmmd_s - struct for storing command line
+ * @cmmd: cmmand line
+ * @next: next node
+ *
+ */
+typedef struct cmmd_s
+{
+	char *cmmd;
+	struct cmmd_s *next;
+} cmmd_t;
+
+
+/**
  * struct list_s - struct for holding custom environmental variables list
  * @var: environmental variable and value separated by '=' char
  * @val: value of env var
@@ -40,33 +65,6 @@ typedef struct list_s
     char *value;
     struct list_s *next;
 } list_t;
-
-/**
- * struct inventory - inventory of support arguments for immediate access
- * @argv: argument vector
- * @N_commd: str of input commands
- * @st_mode: set mode to either FIFO or terminal
- * @buflimit: buflimit max of 1024 chars
- * @envlist: double pointer to commands list
- * @commd_tally: counter
- * @pid: processs id of the shell
- * @exit: the exit indicator
- * @exit_status: the exit status
- */
-typedef struct inventory
-{
-	char **argv;
-	char *N_commd;
-	char **envlist;
-	int st_mode;
-	size_t buflimit;
-	int commd_tally;
-	char **_environ;
-	char *pid;
-	int exit;
-	int exit_status;
-
-} inventory_t;
 
 /**
  * struct _builtins - matches command to appropriate builtin function

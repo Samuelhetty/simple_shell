@@ -43,32 +43,41 @@ void free_cmmd(inventory_t *listx)
  * free_tok - frees allocated memory for the struct tokens_t
  *
  * @head: first node
+ * Return: 0 always
  */
 void free_tok(tokens_t **head)
 {
-	tokens_t *temp;
+	tokens_t *dis, *temp;
 
-	while (*head != NULL)
+	if (head != NULL)
 	{
-		temp = *head;
-		*head = (*head)->next;
-		free(temp);
+		dis = *head;
+		while ((temp = dis) != NULL)
+		{
+		       dis = dis->next;
+		       free(temp);
+		}
+		*head = NULL;
 	}
 }
 /**
  * free_commd - frees allocated memory for struct cmmd_t
  *
  * @head: first node
+ * Return: 0 always
  */
 void free_commd(cmmd_t **head)
 {
-	cmmd_t *temp;
+	cmmd_t *dis, *temp;
 
-	while (*head != NULL)
+	if (head != NULL)
 	{
-		temp = *head;
-		*head = (*head)->next;
-		free(temp->cmmd);
-		free(temp);
+		dis = *head;
+		while ((temp = dis) != NULL)
+		{
+			dis = dis->next;
+			free(temp);
+		}
+		*head = NULL;
 	}
 }

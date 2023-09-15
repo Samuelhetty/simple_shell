@@ -41,6 +41,38 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 	return (NEWp);
 }
+/**
+ * dptr_alloc - reallocates a memory block of a two pointer
+ * @dptr: two pointer to the previous memory allocated
+ * @old: size in bytes of the allocated space of dptr
+ * @new: new size in bytes of the new memory block
+ *
+ * Return: dptr.
+ * if new == size, returns dptr without any changes.
+ * if malloc fails, returns NULL.
+ */
+char **dptr_alloc(char **dptr, unsigned int old, unsigned int new)
+{
+        char **n_ptr;
+        unsigned int i;
+
+        if (dptr == NULL)
+                return (safe_malloc(sizeof(char *) * new));
+
+        if (new == old)
+                return (dptr);
+
+        n_ptr = safe_malloc(sizeof(char *) * new);
+        if (n_ptr == NULL)
+                return (NULL);
+
+        for (i = 0; i < old; i++)
+                n_ptr[i] = dptr[i];
+
+        free(dptr);
+
+        return (n_ptr);
+}
 
 /**
  * mem_reset - sets all bytes of string to '\0'

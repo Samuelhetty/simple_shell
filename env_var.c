@@ -5,15 +5,15 @@
  *
  * @head: head of linked list
  * @input: input string
- * @envlist: env lists
+ * @inventory: argument lists
  * Return: no return
  */
-void perform_search(list_t **head, char *input, inventory_t *envlist)
+void perform_search(list_t **head, char *input, inventory_t *inventory)
 {
 	int left, right, j, len;
 	char **env_list;
 
-	env_list = envlist->_environ;
+	env_list = inventory->_environ;
 	for (left = 0; env_list[left]; left++)
 	{
 		for (j = 1, right = 0; env_list[left][right]; right++)

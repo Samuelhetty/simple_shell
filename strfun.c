@@ -67,26 +67,31 @@ char *_strdupp(char *str)
 
 /**
  * _stricomp - compare string values
- * @s1: input value
- * @s2: input value
+ * @str: input value
+ * @delim: delimiter
  *
- * Return: s1[i] - s2[i]
+ * Return: 1 if is = 0, if not
  */
-int _stricomp(char *s1, char *s2)
+int _stricomp(char str[], const char *delim)
 {
-		int i;
+        unsigned int i, j, k;
 
-		i = 0;
-		while (s1[i] != '\0' && s2[i] != '\0')
-		{
-			if (s1[i] != s2[i])
-			{
-				return (s1[i] - s2[i]);
-			}
-			i++;
-		}
-		return (0);
+        for (i = 0, k = 0; str[i]; i++)
+        {
+                for (j = 0; delim[j]; j++)
+                {
+                        if (str[i] == delim[j])
+                        {
+                                k++;
+                                break;
+                        }
+                }
+        }
+        if (i == k)
+                return (1);
+        return (0);
 }
+
 /**
  * _strlen - returns string length of input string
  * @s: string to check length of

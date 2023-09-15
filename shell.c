@@ -41,11 +41,11 @@ char *del_comment(char *in)
  */
 void run_shell(inventory_t *listx)
 {
-	int exit, i_eof;
+	int iterator, i_eof;
 	char *N_commd;
 
-	exit = 1;
-	while (exit == 1)
+	iterator = 1;
+	while (iterator == 1)
 	{
 		if (listx->st_mode)
 			write(STDIN_FILENO, "$ ", 2);
@@ -63,13 +63,13 @@ void run_shell(inventory_t *listx)
 				continue;
 			}
 			N_commd = bash_replace(N_commd, listx);
-			exit = tokenize_cmmd(listx, N_commd);
+			iterator = tokenize_cmmd(listx, N_commd);
 			listx->commd_tally += 1;
-			mem_reset(listx->N_commd, BUFSIZE);
+			free(N_commd);
 		}
 		else
 		{
-			exit = 0;
+			iterator = 0;
 			free(N_commd);
 		}
 	}
