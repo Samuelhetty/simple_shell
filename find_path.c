@@ -33,7 +33,7 @@ char *locate_path(char *id, char **_environ)
 {
 	char *path, *paths, *tok_path, *directories;
 	int len1, len2, i;
-	struct stat begin;
+	struct stat st;
 
 	path = print_var("PATH", _environ);
 	if (path)
@@ -45,7 +45,7 @@ char *locate_path(char *id, char **_environ)
 		while (tok_path != NULL)
 		{
 			if (ch_dir(path, &i))
-				if (stat(id, &begin) == 0)
+				if (stat(id, &st) == 0)
 					return (id);
 			len1 = _strlen(tok_path);
 			directories = safe_malloc(len1 + len2 + 2);
@@ -53,7 +53,7 @@ char *locate_path(char *id, char **_environ)
 			_strcate(directories, "/");
 			_strcate(directories, id);
 			_strcate(directories, "\0");
-			if (stat(directories, &begin) == 0)
+			if (stat(directories, &st) == 0)
 			{
 				free(paths);
 				return (directories);
@@ -62,12 +62,12 @@ char *locate_path(char *id, char **_environ)
 			tok_path = hf_strtok(NULL, ":");
 		}
 		free(paths);
-		if (stat(id, &begin) == 0)
+		if (stat(id, &st) == 0)
 			return (id);
 		return (NULL);
 	}
 	if (id[0] == '/')
-		if (stat(id, &begin) == 0)
+		if (stat(id, &st) == 0)
 			return (id);
 	return (NULL);
 }
@@ -79,7 +79,7 @@ char *locate_path(char *id, char **_environ)
  */
 int exec_path(inventory_t *listx)
 {
-	struct stat begin;
+	struct stat st;
 	int i;
 	char *N_commd;
 
@@ -108,13 +108,48 @@ int exec_path(inventory_t *listx)
 	}
 	if (i == 0)
 		return 0;
-	if (stat(N_commd + i, &begin) == 0)
+	if (stat(N_commd + i, &st) == 0)
 	{
-		if ((begin.st_mode & S_IXUSR) || (begin.st_mode & S_IXGRP) || (begin.st_mode & S_IXOTH))
 			return (i);
 	}
-
+	process_error(listx, 127);
 	return (-1);
+}
+/**
+ * find_error - verifies if user has permissions to access
+ *
+ * @directories: destination directory
+ * @listx: argument list
+ * Return: 1 if there is an error, 0 if not
+ */
+int find_error(char *directories, inventory_t *listx)
+{
+        if (directories == NULL)
+        {
+                process_error(listx, 127);
+                return (1);
+        }
+
+        if (_stricomp(listx->envlist[0], directories) != 0)
+        {
+                if (access(directories, X_OK) == -1)
+                {
+                        process_error(listx, 126);
+                        free(directories);
+                        return (1);
+                }
+                free(directories);
+        }
+        else
+        {
+                if (access(listx->envlist[0], X_OK) == -1)
+                {
+                        process_error(listx, 126);
+                        return (1);
+                }
+        }
+
+        return (0);
 }
 /**
  * execute - executes command lines
@@ -124,23 +159,31 @@ int exec_path(inventory_t *listx)
  */
 int execute(inventory_t *listx)
 {
-	pid_t pd;
+	pid_t pd, waitpd;
 	int state;
 	int exe;
 	char *directories;
+	(void) waitpd;
 
 	exe = exec_path(listx);
 
 	if (exe == -1)
 		return 1;
-	directories = (exe == 0) ? locate_path(listx->envlist[0], listx->_environ) : listx->envlist[0];
+	if (exe == 0)
+	{
+		directories = locate_path(listx->envlist[0], listx->_environ);
+		if (find_error(directories, listx) == 1)
+			return (1);
+	}
 
 	pd = fork();
 	if (pd == 0)
 	{
+		if (exe == 0)
+			 directories = locate_path(listx->envlist[0], listx->_environ);
+		else
+			directories = listx->envlist[0];
 		execve(directories + exe, listx->envlist, listx->_environ);
-		_perror(listx->argv[0]);
-		exit(1);
 	}
 	else if (pd < 0)
 	{
@@ -149,9 +192,11 @@ int execute(inventory_t *listx)
 	}
 	else
 	{
-		waitpid(pd, &state, 0);
+		do {
+			waitpd = waitpid(pd, &state, WUNTRACED);
+		} while (!WIFEXITED(state) && !WIFSIGNALED(state));
 	}
 
-	listx->exit_status = WIFEXITED(state) ? WEXITSTATUS(state) : 1;
+	listx->exit_status = state / 256;
 	return (1);
 }

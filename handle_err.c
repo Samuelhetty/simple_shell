@@ -91,17 +91,17 @@ int char_entry(char *N_commd, int *indx)
  * @listx: file structure
  * @N_commd: input str
  * @indx: index of the error
- * @boll: to control the massage error
+ * @bool: to control the massage error
  * Return: zero return
  */
-void pt_error(inventory_t *listx, char *N_commd, int indx, int boll)
+void pt_error(inventory_t *listx, char *N_commd, int indx, int bool)
 {
 	char *msg, *msg2, *msg3, *error, *commd_tally;
 	int length;
 
 	if (N_commd[indx] == ';')
 	{
-		if (boll == 0)
+		if (bool == 0)
 			msg = (N_commd[indx + 1] == ';' ? ";;" : ";");
 		else
 			msg = (N_commd[indx - 1] == ';' ? ";;" : ";");
@@ -146,11 +146,11 @@ void pt_error(inventory_t *listx, char *N_commd, int indx, int boll)
  */
 int handle_error(inventory_t *listx, char *N_commd)
 {
-	int start, st, i = 0;
+	int start, first_ch, i = 0;
 
-	st = char_entry(N_commd, &start);
+	first_ch = char_entry(N_commd, &start);
 
-	if (st == -1)
+	if (first_ch == -1)
 	{
 		pt_error(listx, N_commd, start, 0);
 		return (1);
@@ -166,3 +166,42 @@ int handle_error(inventory_t *listx, char *N_commd)
 
 	return (0);
 }
+/**
+ * process_error - calls the error according the builtin, syntax or permission
+ * @listx: argument list
+ * @e_val: error value
+ * Return: error
+ */
+int process_error(inventory_t *listx, int e_val)
+{
+        char *error;
+
+        switch (e_val)
+        {
+        case -1:
+                error = err_env(listx);
+                break;
+        case 126:
+                error = path_err(listx);
+                break;
+        case 127:
+                error = UNfound(listx);
+                break;
+        case 2:
+                if (_stricomp("exit", listx->envlist[0]) == 0)
+                        error = ex_error(listx);
+                else if (_stricomp("cd", listx->envlist[0]) == 0)
+                        error = fetch_cd_err(listx);
+                break;
+        }
+
+        if (error)
+        {
+                write(STDERR_FILENO, error, _strlen(error));
+                free(error);
+        }
+
+        listx->exit_status = e_val;
+        return (e_val);
+}
+

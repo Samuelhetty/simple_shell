@@ -109,4 +109,20 @@ cmmd_t *add_cmmd_node_end(cmmd_t **head, char *cmmd);
 void free_commd(cmmd_t **head);
 void free_tok(tokens_t **head);
 
+/*---------helpers------------*/
+void h_env(void);
+void h_exit(void);
+void help_all(void);
+void hf_help(void);
+int pt_help(inventory_t *listx);
+
+/*------------error handlers----------*/
+char *err_env(inventory_t *listx);
+char *path_err(inventory_t *listx);
+char *UNfound(inventory_t *listx);
+char *ex_err(inventory_t *listx);
+char *cd_err(inventory_t *, char *, char *, char *);
+char *fetch_cd_err(inventory_t *listx);
+int get_error(inventory_t *listx, int e_val);
+int process_error(inventory_t *listx, int e_val);
 #endif
