@@ -53,25 +53,25 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
  */
 char **dptr_alloc(char **dptr, unsigned int old, unsigned int new)
 {
-        char **n_ptr;
-        unsigned int i;
+	char **n_ptr;
+	unsigned int i;
 
-        if (dptr == NULL)
-                return (safe_malloc(sizeof(char *) * new));
+	if (dptr == NULL)
+		return (safe_malloc(sizeof(char *) * new));
 
-        if (new == old)
-                return (dptr);
+	if (new == old)
+		return (dptr);
 
-        n_ptr = safe_malloc(sizeof(char *) * new);
-        if (n_ptr == NULL)
-                return (NULL);
+	n_ptr = safe_malloc(sizeof(char *) * new);
+	if (n_ptr == NULL)
+		return (NULL);
 
-        for (i = 0; i < old; i++)
-                n_ptr[i] = dptr[i];
+	for (i = 0; i < old; i++)
+		n_ptr[i] = dptr[i];
 
-        free(dptr);
+	free(dptr);
 
-        return (n_ptr);
+	return (n_ptr);
 }
 
 /**

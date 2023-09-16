@@ -45,7 +45,7 @@ char **tokenize(char *N_commd)
  * add_tok_node_end - adds a node to token list
  *
  * @head: first node
- * @tokens: seperators
+ * @div: seperator
  * Return: located head
  */
 tokens_t *add_tok_node_end(tokens_t **head, char div)

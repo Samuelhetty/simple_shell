@@ -27,44 +27,44 @@ char *_strncate(char *dest, char *src, int n)
  */
 char *hf_strtok(char str[], const char *delim)
 {
-        static char *split_tok, *lastTok;
-        char *startTok;
-        unsigned int i;
+	static char *split_tok, *lastTok;
+	char *startTok;
+	unsigned int i;
 	bool foundDelim;
 
-        if (str != NULL)
-        {
-                if (_stricomp(str, delim))
-                        return (NULL);
-                split_tok = str; /*Store first address*/
-                i = _strlen(str);
-                lastTok = &str[i]; /*Store last address*/
-        }
-        startTok = split_tok;
-        if (startTok == lastTok) /*Reaching the end*/
-                return (NULL);
+	if (str != NULL)
+	{
+		if (_stricomp(str, delim))
+			return (NULL);
+		split_tok = str; /*Store first address*/
+		i = _strlen(str);
+		lastTok = &str[i]; /*Store last address*/
+	}
+	startTok = split_tok;
+	if (startTok == lastTok) /*Reaching the end*/
+		return (NULL);
 
-        for (foundDelim = 0; *split_tok; split_tok++)
-        {
-                /*Breaking loop finding the next token*/
-                if (split_tok != startTok)
-                        if (*split_tok && *(split_tok - 1) == '\0')
-                                break;
-                /*Replacing delimiter for null char*/
-                for (i = 0; delim[i]; i++)
-                {
-                        if (*split_tok == delim[i])
-                        {
-                                *split_tok = '\0';
-                                if (split_tok == startTok)
-                                        startTok++;
-                                break;
-                        }
-                }
+	for (foundDelim = 0; *split_tok; split_tok++)
+	{
+		/*Breaking loop finding the next token*/
+		if (split_tok != startTok)
+			if (*split_tok && *(split_tok - 1) == '\0')
+				break;
+		/*Replacing delimiter for null char*/
+		for (i = 0; delim[i]; i++)
+		{
+			if (*split_tok == delim[i])
+			{
+				*split_tok = '\0';
+				if (split_tok == startTok)
+					startTok++;
+				break;
+			}
+		}
 		if (foundDelim == 0 && *split_tok) /*Str != Delim*/
-                        foundDelim = 1;
-        }
-        if (foundDelim == 0) /*Str == Delim*/
-                return (NULL);
-        return (startTok);
+			foundDelim = 1;
+	}
+	if (foundDelim == 0) /*Str == Delim*/
+		return (NULL);
+	return (startTok);
 }
