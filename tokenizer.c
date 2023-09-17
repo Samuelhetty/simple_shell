@@ -4,14 +4,14 @@
  * ex_char - exchanges | and & for non-printed chars
  *
  * @N_commd: input string
- * @boll: type of exchange
+ * @bool: type of exchange
  * Return: exchanged string
  */
-char *ex_char(char *N_commd, int boll)
+char *ex_char(char *N_commd, int bool)
 {
 	int index;
 
-	if (boll == 0)
+	if (bool == 0)
 	{
 		for (index = 0; N_commd[index]; index++)
 		{

@@ -108,7 +108,7 @@ char *UNfound(inventory_t *listx)
 }
 
 /**
- * err_EX_shell - enique error report to exit
+ * ex_error - enique error report to exit
  * @listx: arguments lists
  * Return: error report
  */

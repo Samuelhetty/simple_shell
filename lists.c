@@ -12,7 +12,6 @@ void buildarginv(inventory_t *listx, char **argv)
 
 	listx->argv = argv;
 	listx->N_commd = NULL;
-	listx->st_mode = _filemode(STDIN_FILENO);
 	listx->envlist = NULL;
 	listx->exit_status = 0;
 	listx->commd_tally = 1;

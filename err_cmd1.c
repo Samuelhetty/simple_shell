@@ -2,7 +2,7 @@
 
 
 /**
- * error_env - error report for the env in fetch_env.
+ * err_env - error report for the env in fetch_env.
  * @listx: argument lists
  * Return: error report
  */
@@ -36,7 +36,7 @@ char *err_env(inventory_t *listx)
 }
 
 /**
- * error_path - error report for the path.
+ * path_err - error report for the path.
  * @listx: argument lists
  * Return: error report
  */
@@ -65,3 +65,29 @@ char *path_err(inventory_t *listx)
         free(str_tally);
         return (msgOUT);
 }
+/**
+ * ezit_shell - exits the shell
+ *
+ * @listx: argument lists
+ * Return: error report
+ */
+/*int ezit_shell(inventory_t *listx)
+{
+	unsigned int es;
+	int digit, lenstr, bg_num;
+
+	if (listx->envlist[1] != NULL)
+	{
+		es = _atoi(listx->envlist[1]);
+		digit = _isdigit(listx->envlist[1]);
+		lenstr = _strlen(listx->envlist[1]);
+		bg_num = es > (unsigned int)INT_MAX;
+		if (!is_digit || lenstr > 10 || bg_num)
+		{
+			process_error(listx, 2);
+			listx->exit_status = 2;
+			return (1);
+		}
+		listx->exit_status = (es % 256);
+	}
+	re*/

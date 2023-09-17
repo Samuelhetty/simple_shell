@@ -29,8 +29,7 @@ char *hf_strtok(char str[], const char *delim)
 {
 	static char *split_tok, *lastTok;
 	char *startTok;
-	unsigned int i;
-	bool foundDelim;
+	unsigned int i, bool;
 
 	if (str != NULL)
 	{
@@ -44,7 +43,7 @@ char *hf_strtok(char str[], const char *delim)
 	if (startTok == lastTok) /*Reaching the end*/
 		return (NULL);
 
-	for (foundDelim = 0; *split_tok; split_tok++)
+	for (bool = 0; *split_tok; split_tok++)
 	{
 		/*Breaking loop finding the next token*/
 		if (split_tok != startTok)
@@ -61,10 +60,10 @@ char *hf_strtok(char str[], const char *delim)
 				break;
 			}
 		}
-		if (foundDelim == 0 && *split_tok) /*Str != Delim*/
-			foundDelim = 1;
+		if (bool == 0 && *split_tok) /*Str != Delim*/
+			bool = 1;
 	}
-	if (foundDelim == 0) /*Str == Delim*/
+	if (bool == 0) /*Str == Delim*/
 		return (NULL);
 	return (startTok);
 }

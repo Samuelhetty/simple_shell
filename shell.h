@@ -5,16 +5,13 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <limits.h>
-#include <string.h>
 #include <errno.h>
 #include <sys/wait.h>
-#include <stdbool.h>
-#include <ctype.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <stdarg.h>
+#include <signal.h>
 #include <fcntl.h>
-#include <stddef.h>
+#include <string.h>
 #include "structs.h"
 
 /* -----MACROS----- */
@@ -74,7 +71,7 @@ int is_unsignedint(char *num);
 int processor_builtins(inventory_t *listx);
 int (*run_builtin(char *command))(inventory_t *);
 int handle_error(inventory_t *listx, char *N_commd);
-void pt_error(inventory_t *listx, char *N_commd, int indx, int boll);
+void pt_error(inventory_t *listx, char *N_commd, int indx, int bool);
 int char_entry(char *N_commd, int *indx);
 int fetch_err(char *N_commd, int i, char end);
 int ch_dupp(char *N_commd, int i);
@@ -99,7 +96,7 @@ int print_len(int n);
 
 
 /*-----------tokens----------*/
-char *ex_char(char *N_commd, int boll);
+char *ex_char(char *N_commd, int bool);
 void add_nodes(tokens_t **h1, cmmd_t **h2, char *N_commd);
 void fetch_commd(tokens_t **tok_list, cmmd_t **cmmd_list, inventory_t *listx);
 int tokenize_cmmd(inventory_t *listx, char *N_commd);
@@ -120,9 +117,9 @@ int pt_help(inventory_t *listx);
 char *err_env(inventory_t *listx);
 char *path_err(inventory_t *listx);
 char *UNfound(inventory_t *listx);
-char *ex_err(inventory_t *listx);
+char *ex_error(inventory_t *listx);
 char *cd_err(inventory_t *, char *, char *, char *);
 char *fetch_cd_err(inventory_t *listx);
-int get_error(inventory_t *listx, int e_val);
 int process_error(inventory_t *listx, int e_val);
+
 #endif

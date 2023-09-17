@@ -40,7 +40,7 @@ int pt_env(inventory_t *listx)
 		for (j = 0; listx->_environ[i][j]; j++)
 
 			write(STDOUT_FILENO, listx->_environ[i], j);
-		write(STDOUT_FILENO, "n", 1);
+		write(STDOUT_FILENO, "\n", 1);
 	}
 	listx->exit_status = 0;
 
@@ -96,10 +96,7 @@ list_t *add_node_end(list_t **head, int var, char *value, int val)
 
 	/*Check if memory allocation failed*/
 	if (newn == NULL)
-	{
-		_perror("Memory allocation failed\n");
-		exit(EXT_FAILURE);
-	}
+		return (NULL);
 
 	/*Fill in the base node's values*/
 	newn->value = value;
@@ -123,5 +120,5 @@ list_t *add_node_end(list_t **head, int var, char *value, int val)
 		temp->next = newn;
 	}
 
-	return (newn);
+	return (*head);
 }

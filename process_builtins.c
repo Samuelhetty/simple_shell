@@ -32,15 +32,15 @@ int (*run_builtin(char *command))(inventory_t *)
 
 int processor_builtins(inventory_t *listx)
 {
-	int (*builtin)(inventory_t *listx);
+	int (*builtin_list)(inventory_t *listx);
 
 	if (listx->envlist[0] == NULL)
 		return (1);
 
-	builtin = run_builtin(listx->envlist[0]);
+	builtin_list = run_builtin(listx->envlist[0]);
 
-	if (builtin != NULL)
-		return (builtin(listx));
+	if (builtin_list != NULL)
+		return (builtin_list(listx));
 
 	return (execute(listx));
 }
