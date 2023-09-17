@@ -139,34 +139,6 @@ void pt_error(inventory_t *listx, char *N_commd, int indx, int bool)
 }
 
 /**
- * handle_error - mid function to allocate and print a syntax error
- * @listx: inventory list
- * @N_commd: input string
- * Return: 1 if there is an error and 0 in other occasin
- */
-int handle_error(inventory_t *listx, char *N_commd)
-{
-	int start, first_ch, i = 0;
-
-	first_ch = char_entry(N_commd, &start);
-
-	if (first_ch == -1)
-	{
-		pt_error(listx, N_commd, start, 0);
-		return (1);
-	}
-
-	i = fetch_err(N_commd + start, 0, *(N_commd + start));
-
-	if (i != 0)
-	{
-		pt_error(listx, N_commd, start + i, 1);
-		return (1);
-	}
-
-	return (0);
-}
-/**
  * process_error - calls the error according the builtin, syntax or permission
  * @listx: argument list
  * @e_val: error value
@@ -174,34 +146,33 @@ int handle_error(inventory_t *listx, char *N_commd)
  */
 int process_error(inventory_t *listx, int e_val)
 {
-        char *error;
+	char *error;
 
-        switch (e_val)
-        {
-        case -1:
-                error = err_env(listx);
-                break;
-        case 126:
-                error = path_err(listx);
-                break;
-        case 127:
-                error = UNfound(listx);
-                break;
-        case 2:
-                if (_stricomp("exit", listx->envlist[0]) == 0)
-                        error = ex_error(listx);
-                else if (_stricomp("cd", listx->envlist[0]) == 0)
-                        error = fetch_cd_err(listx);
-                break;
-        }
+	switch (e_val)
+	{
+	case -1:
+		error = err_env(listx);
+		break;
+	case 126:
+		error = path_err(listx);
+		break;
+	case 127:
+		error = UNfound(listx);
+		break;
+	case 2:
+		if (_stricomp("exit", listx->envlist[0]) == 0)
+			error = ex_error(listx);
+		else if (_stricomp("cd", listx->envlist[0]) == 0)
+			error = fetch_cd_err(listx);
+		break;
+	}
 
-        if (error)
-        {
-                write(STDERR_FILENO, error, _strlen(error));
-                free(error);
-        }
+	if (error)
+	{
+		write(STDERR_FILENO, error, _strlen(error));
+		free(error);
+	}
 
-        listx->exit_status = e_val;
-        return (e_val);
+	listx->exit_status = e_val;
+	return (e_val);
 }
-

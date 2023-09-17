@@ -81,3 +81,31 @@ void free_commd(cmmd_t **head)
 		*head = NULL;
 	}
 }
+/**
+ * handle_error - mid function to allocate and print a syntax error
+ * @listx: inventory list
+ * @N_commd: input string
+ * Return: 1 if there is an error and 0 in other occasin
+ */
+int handle_error(inventory_t *listx, char *N_commd)
+{
+	int start, first_ch, i = 0;
+
+	first_ch = char_entry(N_commd, &start);
+
+	if (first_ch == -1)
+	{
+		pt_error(listx, N_commd, start, 0);
+		return (1);
+	}
+
+	i = fetch_err(N_commd + start, 0, *(N_commd + start));
+
+	if (i != 0)
+	{
+		pt_error(listx, N_commd, start + i, 1);
+		return (1);
+	}
+
+	return (0);
+}

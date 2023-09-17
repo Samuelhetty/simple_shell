@@ -75,7 +75,7 @@ char *locate_path(char *id, char **_environ)
  * exec_path - determines if is an executable
  *
  * @listx: argument inventory
- * Return: 0 if is not an executable, other number if it does
+ * Return: 0 not an executable, other number if it does
  */
 int exec_path(inventory_t *listx)
 {
@@ -90,7 +90,7 @@ int exec_path(inventory_t *listx)
 		if (N_commd[i] == '.')
 		{
 			if (N_commd[i + 1] == '.')
-				return 0;
+				return (0);
 			if (N_commd[i + 1] == '/')
 				continue;
 			else
@@ -107,7 +107,7 @@ int exec_path(inventory_t *listx)
 			break;
 	}
 	if (i == 0)
-		return 0;
+		return (0);
 	if (stat(N_commd + i, &st) == 0)
 	{
 			return (i);
@@ -124,32 +124,33 @@ int exec_path(inventory_t *listx)
  */
 int find_error(char *directories, inventory_t *listx)
 {
-        if (directories == NULL)
-        {
-                process_error(listx, 127);
-                return (1);
-        }
+	if (directories == NULL)
+	{
+		process_error(listx, 127);
+		return (1);
+	}
 
-        if (_stricomp(listx->envlist[0], directories) != 0)
-        {
-                if (access(directories, X_OK) == -1)
-                {
-                        process_error(listx, 126);
-                        free(directories);
-                        return (1);
-                }
-                free(directories);
-        }
-        else
-        {
-                if (access(listx->envlist[0], X_OK) == -1)
-                {
-                        process_error(listx, 126);
-                        return (1);
-                }
-        }
 
-        return (0);
+	if (_stricomp(listx->envlist[0], directories) != 0)
+	{
+		if (access(directories, X_OK) == -1)
+		{
+			process_error(listx, 126);
+			free(directories);
+			return (1);
+		}
+		free(directories);
+	}
+	else
+	{
+		if (access(listx->envlist[0], X_OK) == -1)
+		{
+			process_error(listx, 126);
+			return (1);
+		}
+	}
+
+	return (0);
 }
 /**
  * execute - executes command lines
@@ -168,7 +169,7 @@ int execute(inventory_t *listx)
 	exe = exec_path(listx);
 
 	if (exe == -1)
-		return 1;
+		return (1);
 	if (exe == 0)
 	{
 		directories = locate_path(listx->envlist[0], listx->_environ);
@@ -183,6 +184,7 @@ int execute(inventory_t *listx)
 			 directories = locate_path(listx->envlist[0], listx->_environ);
 		else
 			directories = listx->envlist[0];
+
 		execve(directories + exe, listx->envlist, listx->_environ);
 	}
 	else if (pd < 0)
