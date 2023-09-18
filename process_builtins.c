@@ -2,10 +2,10 @@
 
 /**
  * run_builtin - builtin that pass the command in the arg
- * @command: command
+ * @id: command
  * Return: function pointer of the builtin command
  */
-int (*run_builtin(char *command))(inventory_t *)
+int (*run_builtin(char *id))(inventory_t *)
 {
 	int tally;
 
@@ -16,7 +16,7 @@ int (*run_builtin(char *command))(inventory_t *)
 
 	for (tally = 0; builtin_list[tally].args; tally++)
 	{
-		if (_stricomp(builtin_list[tally].args, command) == 0)
+		if (hf_strcmp(builtin_list[tally].args, id) == 0)
 			break;
 	}
 

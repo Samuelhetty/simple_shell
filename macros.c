@@ -1,5 +1,21 @@
 #include "shell.h"
+/**
+ * _memcpy - copies information between void pointers.
+ * @newptr: location of the pointer.
+ * @ptr: source of the pointer.
+ * @size: size of the generated pointer.
+ *
+ * Return: return zero.
+ */
+void _memcpy(void *newptr, const void *ptr, unsigned int size)
+{
+        char *char_ptr = (char *)ptr;
+        char *char_newptr = (char *)newptr;
+        unsigned int i;
 
+        for (i = 0; i < size; i++)
+                char_newptr[i] = char_ptr[i];
+}
 /**
  * _realloc - reallocates a memory block using malloc and free
  * @ptr: pointer to reallocate memory

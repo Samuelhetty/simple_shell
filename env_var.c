@@ -46,16 +46,16 @@ void perform_search(list_t **head, char *input, inventory_t *inventory)
  *
  * @head: head of the linked list
  * @input: input string
- * @last_bg_status: last status of the Shell
+ * @st: last status of the Shell
  * @inventory: arg list
  * Return: no return
  */
-int identify_vars(list_t **head, char *input, char *last_bg_status,
+int identify_vars(list_t **head, char *input, char *st,
 		inventory_t *inventory)
 {
 	int i, bg, pd;
 
-	bg = _strlen(last_bg_status);
+	bg = _strlen(st);
 	pd = _strlen(inventory->pid);
 
 	for (i = 0; input[i]; i++)
@@ -63,7 +63,7 @@ int identify_vars(list_t **head, char *input, char *last_bg_status,
 		if (input[i] == '$')
 		{
 			if (input[i + 1] == '?')
-				add_node_end(head, 2, last_bg_status, bg), i++;
+				add_node_end(head, 2, st, bg), i++;
 			else if (input[i + 1] == '$')
 				add_node_end(head, 2, inventory->pid, pd), i++;
 			else if (input[i + 1] == '\n')

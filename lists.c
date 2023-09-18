@@ -19,7 +19,7 @@ void buildarginv(inventory_t *listx, char **argv)
 	for (i = 0; environ[i]; i++)
 		;
 
-	listx->_environ = safe_malloc(sizeof(char *) * (i + 1));
+	listx->_environ = malloc(sizeof(char *) * (i + 1));
 
 	for (i = 0; environ[i]; i++)
 	{

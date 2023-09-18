@@ -8,13 +8,13 @@
  */
 char **tokenize(char *N_commd)
 {
-	size_t bsize;
+	size_t buflimit;
 	size_t i;
 	char **tokenN;
 	char *split;
 
-	bsize = TOK_BUFSIZE;
-	tokenN = safe_malloc(sizeof(char *) * (bsize));
+	buflimit = TOK_BUFSIZE;
+	tokenN = malloc(sizeof(char *) * (buflimit));
 	if (tokenN == NULL)
 	{
 		write(STDERR_FILENO, ": allocation error\n", 18);
@@ -25,10 +25,10 @@ char **tokenize(char *N_commd)
 
 	for (i = 1; split != NULL; i++)
 	{
-		if (i == bsize)
+		if (i == buflimit)
 		{
-			bsize += TOK_BUFSIZE;
-			tokenN = dptr_alloc(tokenN, i, sizeof(char *) * bsize);
+			buflimit += TOK_BUFSIZE;
+			tokenN = dptr_alloc(tokenN, i, sizeof(char *) * buflimit);
 			if (tokenN == NULL)
 			{
 				write(STDERR_FILENO, ": allocation error\n", 18);
@@ -52,7 +52,7 @@ tokens_t *add_tok_node_end(tokens_t **head, char div)
 {
 	tokens_t *N_node, *temp;
 
-	N_node = safe_malloc(sizeof(tokens_t));
+	N_node = malloc(sizeof(tokens_t));
 	if (N_node == NULL)
 		return (NULL);
 
@@ -83,7 +83,7 @@ cmmd_t *add_cmmd_node_end(cmmd_t **head, char *cmmd)
 {
 	cmmd_t *N_node, *temp;
 
-	N_node = safe_malloc(sizeof(cmmd_t));
+	N_node = malloc(sizeof(cmmd_t));
 	if (N_node == NULL)
 		return (NULL);
 

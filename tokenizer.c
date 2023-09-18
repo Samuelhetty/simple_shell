@@ -48,7 +48,7 @@ char *ex_char(char *N_commd, int bool)
  * @h1: head of separator list
  * @h2: head of command lines list
  * @N_commd: input string
-e* Return: no return
+ * Return: no return
  */
 void add_nodes(tokens_t **h1, cmmd_t **h2, char *N_commd)
 {

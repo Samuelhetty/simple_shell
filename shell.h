@@ -37,9 +37,9 @@ void buildarginv(inventory_t *listx, char **av);
 void free_cmmd(inventory_t *listx);
 
 /* -----custom environ----- */
-int check_ID(const char *n_var, const char *ID);
+int check_ID(const char *n_var, const char *args);
 int pt_env(inventory_t *listx);
-char *print_var(const char *ID, char **_environ);
+char *print_var(const char *args, char **_environ);
 char *bash_replace(char *N_commd, inventory_t *listx);
 char *replaced_var(list_t **head, char *N_commd, char *N_input, int N_len);
 int identify_vars(list_t **head, char *input, char *last_bg_status, inventory_t *inventory);
@@ -58,6 +58,7 @@ char *mem_reset(char *str, int bytes);
 void *safe_malloc(int size);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char **dptr_alloc(char **dptr, unsigned int old, unsigned int new);
+void _memcpy(void *newptr, const void *ptr, unsigned int size);
 
 /* -----custom C std lib----- */
 void _perror(const char *string);
@@ -69,7 +70,7 @@ void hf_print(const char *prints);
 int ezit(inventory_t *listx);
 int is_unsignedint(char *num);
 int processor_builtins(inventory_t *listx);
-int (*run_builtin(char *command))(inventory_t *);
+int (*run_builtin(char *id))(inventory_t *);
 int handle_error(inventory_t *listx, char *N_commd);
 void pt_error(inventory_t *listx, char *N_commd, int indx, int bool);
 int char_entry(char *N_commd, int *indx);
@@ -79,12 +80,18 @@ int execute(inventory_t *listx);
 int is_exec(inventory_t *listx);
 char *locate_path(char *id, char **_environ);
 int ch_dir(char *path, int *i);
+char *set_info(char *args, char *eval);
+void get_env(char *args, char *eval, inventory_t *listx);
+int _setenv(inventory_t *listx);
+int _unsetenv(inventory_t *listx);
+
 
 /*---------strings-----------*/
 size_t __attribute__ ((warn_unused_result)) _strlen(const char *s);
 char *_strncate(char *dest, char *src, int n);
 int _putzar(char c);
 int _putz(const char *str);
+int hf_strcmp(char *s1, char *s2);
 int _stricomp(char str[], const char *delim);
 char *_strdupp(char *str);
 char *_strcate(char *dest, char *src);

@@ -48,7 +48,7 @@ char *locate_path(char *id, char **_environ)
 				if (stat(id, &st) == 0)
 					return (id);
 			len1 = _strlen(tok_path);
-			directories = safe_malloc(len1 + len2 + 2);
+			directories = malloc(len1 + len2 + 2);
 			_strcpy(directories, tok_path);
 			_strcate(directories, "/");
 			_strcate(directories, id);
@@ -131,7 +131,7 @@ int find_error(char *directories, inventory_t *listx)
 	}
 
 
-	if (_stricomp(listx->envlist[0], directories) != 0)
+	if (hf_strcmp(listx->envlist[0], directories) != 0)
 	{
 		if (access(directories, X_OK) == -1)
 		{

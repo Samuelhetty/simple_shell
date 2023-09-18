@@ -4,17 +4,17 @@
  * check_ID - compares env variables names
  * with the name passed.
  * @n_var: name of the environment variable
- * @ID: name passed
+ * @args: name passed
  *
  * Return: 0 if are not equal. Another value if they are.
  */
-int check_ID(const char *n_var, const char *ID)
+int check_ID(const char *n_var, const char *args)
 {
 	int i;
 
 	for (i = 0; n_var[i] != '='; i++)
 	{
-		if (n_var[i] != ID[i])
+		if (n_var[i] != args[i])
 		{
 			return (0);
 		}
@@ -49,13 +49,13 @@ int pt_env(inventory_t *listx)
 
 /**
  * print_var - prints environmental variable list
- * @ID: name of the environment variable
+ * @args: name of the environment variable
  * @_environ: env variables
  *
  * Return:  value of the environment variable if is found.
  * In other case, returns NULL
  */
-char *print_var(const char *ID, char **_environ)
+char *print_var(const char *args, char **_environ)
 {
 	char *_env;
 	int i, nxt;
@@ -68,7 +68,7 @@ char *print_var(const char *ID, char **_environ)
 	for (i = 0; _environ[i]; i++)
 	{
 		/* If name and env are equal */
-		nxt = check_ID(_environ[i], ID);
+		nxt = check_ID(_environ[i], args);
 		if (nxt)
 		{
 			_env = _environ[i];
@@ -92,7 +92,7 @@ list_t *add_node_end(list_t **head, int var, char *value, int val)
 	/*Create a new node*/
 	list_t *newn, *temp;
 
-	newn = safe_malloc(sizeof(list_t));
+	newn = malloc(sizeof(list_t));
 
 	/*Check if memory allocation failed*/
 	if (newn == NULL)

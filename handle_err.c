@@ -96,7 +96,7 @@ int char_entry(char *N_commd, int *indx)
  */
 void pt_error(inventory_t *listx, char *N_commd, int indx, int bool)
 {
-	char *msg, *msg2, *msg3, *error, *commd_tally;
+	char *msg, *msg2, *msg3, *msgOUT, *commd_tally;
 	int length;
 
 	if (N_commd[indx] == ';')
@@ -119,22 +119,22 @@ void pt_error(inventory_t *listx, char *N_commd, int indx, int bool)
 	length = _strlen(listx->argv[0]) + _strlen(commd_tally);
 	length += _strlen(msg) + _strlen(msg2) + _strlen(msg3) + 2;
 
-	error = safe_malloc(sizeof(char) * (length + 1));
-	if (error == 0)
+	msgOUT = malloc(sizeof(char) * (length + 1));
+	if (msgOUT == 0)
 	{
 		free(commd_tally);
 		return;
 	}
-	_strcpy(error, listx->argv[0]);
-	_strcate(error, ": ");
-	_strcate(error, commd_tally);
-	_strcate(error, msg2);
-	_strcate(error, msg);
-	_strcate(error, msg3);
-	_strcate(error, "\0");
+	_strcpy(msgOUT, listx->argv[0]);
+	_strcate(msgOUT, ": ");
+	_strcate(msgOUT, commd_tally);
+	_strcate(msgOUT, msg2);
+	_strcate(msgOUT, msg);
+	_strcate(msgOUT, msg3);
+	_strcate(msgOUT, "\0");
 
-	write(STDERR_FILENO, error, length);
-	free(error);
+	write(STDERR_FILENO, msgOUT, length);
+	free(msgOUT);
 	free(commd_tally);
 }
 
@@ -146,31 +146,31 @@ void pt_error(inventory_t *listx, char *N_commd, int indx, int bool)
  */
 int process_error(inventory_t *listx, int e_val)
 {
-	char *error;
+	char *msgOUT;
 
 	switch (e_val)
 	{
 	case -1:
-		error = err_env(listx);
+		msgOUT = err_env(listx);
 		break;
 	case 126:
-		error = path_err(listx);
+		msgOUT = path_err(listx);
 		break;
 	case 127:
-		error = UNfound(listx);
+		msgOUT = UNfound(listx);
 		break;
 	case 2:
-		if (_stricomp("exit", listx->envlist[0]) == 0)
-			error = ex_error(listx);
-		else if (_stricomp("cd", listx->envlist[0]) == 0)
-			error = fetch_cd_err(listx);
+		if (hf_strcmp("exit", listx->envlist[0]) == 0)
+			msgOUT = ex_error(listx);
+		else if (hf_strcmp("cd", listx->envlist[0]) == 0)
+			msgOUT = fetch_cd_err(listx);
 		break;
 	}
 
-	if (error)
+	if (msgOUT)
 	{
-		write(STDERR_FILENO, error, _strlen(error));
-		free(error);
+		write(STDERR_FILENO, msgOUT, _strlen(msgOUT));
+		free(msgOUT);
 	}
 
 	listx->exit_status = e_val;
