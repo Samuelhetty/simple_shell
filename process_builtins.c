@@ -10,8 +10,9 @@ int (*run_builtin(char *id))(inventory_t *)
 	int tally;
 
 	builtins_t builtin_list[] = {
-		{ "env", pt_env }, { "exit", ezit },
-		{ "help", pt_help }, { NULL, NULL }
+		{"env", pt_env}, {"exit", ezit},
+		{"help", pt_help}, {"setenv", _setenv},
+		{"unsetenv", _unsetenv}, {NULL, NULL}
 	};
 
 	for (tally = 0; builtin_list[tally].args; tally++)
@@ -55,11 +56,15 @@ int pt_help(inventory_t *listx)
 
 	if (listx->envlist[1] == 0)
 		help_all();
-	else if (_stricomp(listx->envlist[1], "env") == 0)
+	else if (hf_strcmp(listx->envlist[1], "env") == 0)
 		h_env();
-	else if (_stricomp(listx->envlist[1], "help") == 0)
+	else if (hf_strcmp(listx->envlist[1], "help") == 0)
 		hf_help();
-	else if (_stricomp(listx->envlist[1], "exit") == 0)
+	else if (hf_strcmp(listx->envlist[1], "setenv") == 0)
+		h_setenv();
+	else if (hf_strcmp(listx->envlist[1], "unsetenv") == 0)
+		h_unsetenv();
+	else if (hf_strcmp(listx->envlist[1], "exit") == 0)
 		h_exit();
 	else
 		write(STDERR_FILENO, listx->envlist[0],

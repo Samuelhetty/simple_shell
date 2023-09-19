@@ -22,7 +22,7 @@ char *cd_err(inventory_t *listx, char *msg, char *msgOUT, char *str_tally)
 
 	if (listx->envlist[1][0] == '-')
 	{
-		fflag = malloc(3);
+		fflag = safe_malloc(3);
 		fflag[0] = '-';
 		fflag[1] = listx->envlist[1][1];
 		fflag[2] = '\0';
@@ -62,7 +62,7 @@ char *fetch_cd_err(inventory_t *listx)
 
 	len = _strlen(listx->argv[0]) + _strlen(listx->envlist[0]);
 	len += _strlen(str_tally) + _strlen(msg) + len_id + 5;
-	msgOUT = malloc(sizeof(char) * (len + 1));
+	msgOUT = safe_malloc(sizeof(char) * (len + 1));
 
 	if (msgOUT == 0)
 	{
@@ -89,7 +89,7 @@ char *UNfound(inventory_t *listx)
 	str_tally = int_to_str(listx->commd_tally);
 	len = _strlen(listx->argv[0]) + _strlen(str_tally);
 	len += _strlen(listx->envlist[0]) + 16;
-	msgOUT = malloc(sizeof(char) * (len + 1));
+	msgOUT = safe_malloc(sizeof(char) * (len + 1));
 	if (msgOUT == 0)
 	{
 		free(msgOUT);
@@ -120,7 +120,7 @@ char *ex_error(inventory_t *listx)
 	str_tally = int_to_str(listx->commd_tally);
 	len = _strlen(listx->argv[0]) + _strlen(str_tally);
 	len += _strlen(listx->envlist[0]) + _strlen(listx->envlist[1]) + 23;
-	msgOUT = malloc(sizeof(char) * (len + 1));
+	msgOUT = safe_malloc(sizeof(char) * (len + 1));
 	if (msgOUT == 0)
 	{
 		free(str_tally);

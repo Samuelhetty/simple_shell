@@ -13,13 +13,14 @@ void buildarginv(inventory_t *listx, char **argv)
 	listx->argv = argv;
 	listx->N_commd = NULL;
 	listx->envlist = NULL;
+	listx->st_mode = _filemode(STDIN_FILENO);
 	listx->exit_status = 0;
 	listx->commd_tally = 1;
 
 	for (i = 0; environ[i]; i++)
 		;
 
-	listx->_environ = malloc(sizeof(char *) * (i + 1));
+	listx->_environ = safe_malloc(sizeof(char *) * (i + 1));
 
 	for (i = 0; environ[i]; i++)
 	{

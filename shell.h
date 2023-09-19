@@ -119,7 +119,8 @@ void h_exit(void);
 void help_all(void);
 void hf_help(void);
 int pt_help(inventory_t *listx);
-
+void h_unsetenv(void);
+void h_setenv(void);
 /*------------error handlers----------*/
 char *err_env(inventory_t *listx);
 char *path_err(inventory_t *listx);

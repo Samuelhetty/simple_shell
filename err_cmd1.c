@@ -15,7 +15,7 @@ char *err_env(inventory_t *listx)
 	msg = ": Unable to add/remove from environment\n";
 	len = _strlen(listx->argv[0]) + _strlen(str_tally);
 	len += _strlen(listx->envlist[0]) + _strlen(msg) + 4;
-	msgOUT = malloc(sizeof(char) * (len + 1));
+	msgOUT = safe_malloc(sizeof(char) * (len + 1));
 	if (msgOUT == 0)
 	{
 		free(msgOUT);
@@ -48,7 +48,7 @@ char *path_err(inventory_t *listx)
 	str_tally = int_to_str(listx->commd_tally);
 	len = _strlen(listx->argv[0]) + _strlen(str_tally);
 	len += _strlen(listx->envlist[0]) + 24;
-	msgOUT = malloc(sizeof(char) * (len + 1));
+	msgOUT = safe_malloc(sizeof(char) * (len + 1));
 	if (msgOUT == 0)
 	{
 		free(msgOUT);

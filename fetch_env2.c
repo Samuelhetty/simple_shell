@@ -16,7 +16,7 @@ char *set_info(char *args, char *eval)
 	l_name = _strlen(args);
 	l_value = _strlen(eval);
 	len = l_name + l_value + 2;
-	n = malloc(sizeof(char) * (len));
+	n = safe_malloc(sizeof(char) * (len));
 	_strcpy(n, args);
 	_strcate(n, "=");
 	_strcate(n, eval);
@@ -48,7 +48,7 @@ void get_env(char *args, char *eval, inventory_t *listx)
 			free(var_env);
 			return;
 		}
-		free(var_env)
+		free(var_env);
 	}
 
 	listx->_environ = dptr_alloc(listx->_environ, i, sizeof(char *) * (i + 2));
@@ -75,7 +75,7 @@ int _setenv(inventory_t *listx)
 
 	get_env(listx->envlist[1], listx->envlist[2], listx);
 
-	return (1);
+	return (EXT_SUCCESS);
 }
 
 
@@ -88,7 +88,7 @@ int _setenv(inventory_t *listx)
  */
 int _unsetenv(inventory_t *listx)
 {
-	char **realloc_environ;
+	char **modify_env;
 	char *var_env, *name_env;
 
 	int i, j, k;
@@ -114,18 +114,18 @@ int _unsetenv(inventory_t *listx)
 		process_error(listx, -1);
 		return (1);
 	}
-	realloc_environ = malloc(sizeof(char *) * (i));
+	modify_env = safe_malloc(sizeof(char *) * (i));
 	for (i = j = 0; listx->_environ[i]; i++)
 	{
 		if (i != k)
 		{
-			realloc_environ[j] = listx->_environ[i];
+			modify_env[j] = listx->_environ[i];
 			j++;
 		}
 	}
-	realloc_environ[j] = NULL;
+	modify_env[j] = NULL;
 	free(listx->_environ[k]);
 	free(listx->_environ);
-	listx->_environ = realloc_environ;
-	return (1);
+	listx->_environ = modify_env;
+	return (EXT_SUCCESS);
 }

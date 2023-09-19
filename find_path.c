@@ -48,7 +48,7 @@ char *locate_path(char *id, char **_environ)
 				if (stat(id, &st) == 0)
 					return (id);
 			len1 = _strlen(tok_path);
-			directories = malloc(len1 + len2 + 2);
+			directories = safe_malloc(len1 + len2 + 2);
 			_strcpy(directories, tok_path);
 			_strcate(directories, "/");
 			_strcate(directories, id);

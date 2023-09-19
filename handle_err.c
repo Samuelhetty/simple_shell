@@ -119,7 +119,7 @@ void pt_error(inventory_t *listx, char *N_commd, int indx, int bool)
 	length = _strlen(listx->argv[0]) + _strlen(commd_tally);
 	length += _strlen(msg) + _strlen(msg2) + _strlen(msg3) + 2;
 
-	msgOUT = malloc(sizeof(char) * (length + 1));
+	msgOUT = safe_malloc(sizeof(char) * (length + 1));
 	if (msgOUT == 0)
 	{
 		free(commd_tally);

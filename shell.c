@@ -47,7 +47,9 @@ void run_shell(inventory_t *listx)
 	iterator = 1;
 	while (iterator == 1)
 	{
-		write(STDIN_FILENO, "$ ", 2);
+		if (listx->st_mode)
+			write(STDIN_FILENO, "$ ", 2);
+
 		N_commd = read_commd(&i_eof);
 		if (i_eof != -1)
 		{

@@ -92,7 +92,7 @@ list_t *add_node_end(list_t **head, int var, char *value, int val)
 	/*Create a new node*/
 	list_t *newn, *temp;
 
-	newn = malloc(sizeof(list_t));
+	newn = safe_malloc(sizeof(list_t));
 
 	/*Check if memory allocation failed*/
 	if (newn == NULL)
