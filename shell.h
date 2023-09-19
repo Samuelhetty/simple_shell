@@ -42,7 +42,8 @@ int pt_env(inventory_t *listx);
 char *print_var(const char *args, char **_environ);
 char *bash_replace(char *N_commd, inventory_t *listx);
 char *replaced_var(list_t **head, char *N_commd, char *N_input, int N_len);
-int identify_vars(list_t **head, char *input, char *last_bg_status, inventory_t *inventory);
+int identify_vars(list_t **head, char *input, char *last_bg_status,
+		inventory_t *inventory);
 void perform_search(list_t **head, char *input, inventory_t *inventory);
 list_t *add_node_end(list_t **head, int var, char *value, int val);
 void free_list(list_t **head);

@@ -1,0 +1,16 @@
+Project: Simple Shell
+Version:
+Date:
+
+Authors:
+*ONOGE HENRIETTA <EMAIL>
+	Initial shell implementation
+	Implemented
+	Basic shell functionality
+	Fixed memory eaks
+	Error handling
+*FAITH SUBERU <odinakafv14423@gmail.com>
+	Command execution
+	Implemented input/output redirection
+	Debugging and documentation
+	Code optimization

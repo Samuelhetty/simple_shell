@@ -7,6 +7,7 @@
  * @argv: argument vector
  * @N_commd: str of input commands
  * @st_mode: set mode to either FIFO or terminal
+ * @_environ: the environ
  * @envlist: double pointer to commands list
  * @commd_tally: counter
  * @pid: processs id of the shell
@@ -15,15 +16,15 @@
  */
 typedef struct inventory
 {
-        char **argv;
-        char *N_commd;
-        char **envlist;
-        int st_mode;
-        int commd_tally;
-        char **_environ;
-        char *pid;
-        int exit;
-        int exit_status;
+	char **argv;
+	char *N_commd;
+	char **envlist;
+	int st_mode;
+	int commd_tally;
+	char **_environ;
+	char *pid;
+	int exit;
+	int exit_status;
 
 } inventory_t;
 
@@ -35,8 +36,8 @@ typedef struct inventory
  */
 typedef struct token_s
 {
-    char tokens;
-    struct token_s *next;
+	char tokens;
+	struct token_s *next;
 } tokens_t;
 
 /**
@@ -57,13 +58,14 @@ typedef struct cmmd_s
  * @var: environmental variable and value separated by '=' char
  * @val: value of env var
  * @next: pointer to the next env variable node
+ * @value: the value at the node
  */
 typedef struct list_s
 {
-    int var;
-    int val;
-    char *value;
-    struct list_s *next;
+	int var;
+	int val;
+	char *value;
+	struct list_s *next;
 } list_t;
 
 /**
@@ -73,8 +75,8 @@ typedef struct list_s
  */
 typedef struct _builtins
 {
-    char *args;
-    int (*builtin_func)(inventory_t *listx);
+	char *args;
+	int (*builtin_func)(inventory_t *listx);
 } builtins_t;
 
 
