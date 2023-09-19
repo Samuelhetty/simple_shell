@@ -11,7 +11,6 @@ void h_env(void)
 	write(STDOUT_FILENO, help, _strlen(help));
 	help = "Display all environmental variables,in the form:.\n";
 	write(STDOUT_FILENO, help, _strlen(help));
-
 }
 
 /**
@@ -27,14 +26,14 @@ void help_all(void)
 	write(STDOUT_FILENO, help, _strlen(help));
 	help = "Type 'help name' to find out more about the function 'name'.\n\n ";
 	write(STDOUT_FILENO, help, _strlen(help));
-        help = "alias: alias [name=['string']]\n cd: cd [-L|[-P [-e]] [-@]] ";
+	help = "alias: alias [name=['string']]\n cd: cd [-L|[-P [-e]] [-@]] ";
 	write(STDOUT_FILENO, help, _strlen(help));
 	help = "[directories]\nexit: exit [n]\n  env: env [option] [name=value] [command ";
 	write(STDOUT_FILENO, help, _strlen(help));
-	 help = "[envlist]]\n  setenv: setenv [variable] [value]\n  unsetenv: ";
-        write(STDOUT_FILENO, help, _strlen(help));
-        help = "unsetenv [variable]\n";
-        write(STDOUT_FILENO, help, _strlen(help));
+	help = "[envlist]]\n  setenv: setenv [variable] [value]\n  unsetenv: ";
+	write(STDOUT_FILENO, help, _strlen(help));
+	help = "unsetenv [variable]\n";
+	write(STDOUT_FILENO, help, _strlen(help));
 }
 
 /**

@@ -110,7 +110,7 @@ int exec_path(inventory_t *listx)
 		return (0);
 	if (stat(N_commd + i, &st) == 0)
 	{
-			return (i);
+		return (i);
 	}
 	process_error(listx, 127);
 	return (-1);
@@ -181,7 +181,7 @@ int execute(inventory_t *listx)
 	if (pd == 0)
 	{
 		if (exe == 0)
-			 directories = locate_path(listx->envlist[0], listx->_environ);
+			directories = locate_path(listx->envlist[0], listx->_environ);
 		else
 			directories = listx->envlist[0];
 
@@ -198,7 +198,6 @@ int execute(inventory_t *listx)
 			waitpd = waitpid(pd, &state, WUNTRACED);
 		} while (!WIFEXITED(state) && !WIFSIGNALED(state));
 	}
-
 	listx->exit_status = state / 256;
 	return (1);
 }

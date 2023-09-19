@@ -54,8 +54,8 @@ void free_tok(tokens_t **head)
 		dis = *head;
 		while ((temp = dis) != NULL)
 		{
-		       dis = dis->next;
-		       free(temp);
+			dis = dis->next;
+			free(temp);
 		}
 		*head = NULL;
 	}
@@ -106,6 +106,5 @@ int handle_error(inventory_t *listx, char *N_commd)
 		pt_error(listx, N_commd, start + i, 1);
 		return (1);
 	}
-
 	return (0);
 }

@@ -38,15 +38,15 @@ char *_strcate(char *dest, char *src)
  */
 char *_strdupp(char *str)
 {
-        char *new;
-        size_t len;
+	char *new;
+	size_t len;
 
-        len = _strlen(str);
-        new = malloc(sizeof(char) * (len + 1));
-        if (new == NULL)
-                return (NULL);
-        _memcpy(new, str, len + 1);
-        return (new);
+	len = _strlen(str);
+	new = malloc(sizeof(char) * (len + 1));
+	if (new == NULL)
+		return (NULL);
+	_memcpy(new, str, len + 1);
+	return (new);
 }
 /**
  * hf_strcmp - compare string values
@@ -57,16 +57,16 @@ char *_strdupp(char *str)
  */
 int hf_strcmp(char *s1, char *s2)
 {
-        int aaa;
+	int aaa;
 
-        for (aaa = 0; s1[aaa] == s2[aaa] && s1[aaa]; aaa++)
-                ;
+	for (aaa = 0; s1[aaa] == s2[aaa] && s1[aaa]; aaa++)
+		;
 
-        if (s1[aaa] > s2[aaa])
-                return (1);
-        if (s1[aaa] < s2[aaa])
-                return (-1);
-        return (0);
+	if (s1[aaa] > s2[aaa])
+		return (1);
+	if (s1[aaa] < s2[aaa])
+		return (-1);
+	return (0);
 }
 
 /**

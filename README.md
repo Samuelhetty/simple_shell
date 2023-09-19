@@ -21,6 +21,9 @@ the main function starts an infinite loop where it call all the above mentioned 
 
 The getline function takes the address of a pointer to an input commands buffer and the maxsize of the input character string as input. it calls read() with the file descriptor set to STDIN and reads from STDIN one character at a time.The process stops when "\n" is encountered. Each character is stored in buffer, and the buffer is reallocated as necessary to accomodate a large string. It then returns the total size of the string read as history.
 
+#strtok *hf_strtok()
+
+The strtok function is a string parsing function that allows you to split a string into smaller "tokens" based on a specified delimiter character or characters. It is part of the C Standard Library and is commonly used for parsing input from files, user input, or data stored in strings. it takes in the string to be tokenize and checkes the delimeter of each character. It returns a pointer to the first token.
 
 Authors:
 ONOGE HENRIETTA
