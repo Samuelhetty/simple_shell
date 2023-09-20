@@ -1,12 +1,12 @@
 Project: Simple Shell
-Version:
-Date:
+Version: 1.0
+Date: September 2023
 
 Authors:
-*ONOGE HENRIETTA <EMAIL>
+*ONOGE HENRIETTA <hetty8004@gmail.com>
 	Initial shell implementation
 	Basic shell functionality
-	Fixed memory eaks
+	Fixed memory leaks
 	Error handling
 *FAITH SUBERU <odinakafv14423@gmail.com>
 	Command execution
